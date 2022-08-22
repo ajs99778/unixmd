@@ -1,6 +1,6 @@
 from __future__ import division
-from mqc.mqc import MQC
-from misc import au_to_K, call_name
+from unixmd.mqc.mqc import MQC
+from unixmd.misc import au_to_K, call_name
 import os, shutil, textwrap
 import numpy as np
 import pickle

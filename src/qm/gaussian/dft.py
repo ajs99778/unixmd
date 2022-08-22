@@ -1,11 +1,11 @@
 from __future__ import division
-from build.cioverlap import wf_overlap 
-from qm.gaussian09.gaussian09 import Gaussian09
-from misc import au_to_A, eV_to_au, call_name
+from unixmd.qm.cioverlap import wf_overlap 
+from unixmd.qm.gaussian.gaussian import Gaussian
+from unixmd.misc import au_to_A, eV_to_au, call_name
 import os, shutil, re, textwrap, subprocess
 import numpy as np
 
-class DFT(Gaussian09):
+class DFT(Gaussian):
     """ Class for the (TD)DFT method of Gaussian 09
 
         :param object molecule: Molecule object

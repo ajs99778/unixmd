@@ -1,9 +1,9 @@
 from __future__ import division
-from qm.qm_calculator import QM_calculator
+from unixmd.qm.qm_calculator import QM_calculator
 import os
 
-class Gaussian09(QM_calculator):
-    """ Class for common parts of Gaussian 09
+class Gaussian(QM_calculator):
+    """ Class for common parts of Gaussian 
 
         :param string basis_set: Basis set information
         :param string memory: Allocatable memory

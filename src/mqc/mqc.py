@@ -1,5 +1,5 @@
 from __future__ import division
-from misc import fs_to_au, au_to_A, call_name, typewriter
+from unixmd.misc import fs_to_au, au_to_A, call_name, typewriter
 import textwrap, datetime
 import numpy as np
 import os, shutil

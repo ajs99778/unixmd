@@ -1,5 +1,5 @@
 from __future__ import division
-from misc import au_to_A
+from unixmd.misc import au_to_A
 import os, shutil
 
 class QM_calculator(object):

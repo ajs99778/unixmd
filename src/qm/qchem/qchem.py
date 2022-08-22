@@ -1,6 +1,6 @@
 from __future__ import division
-from qm.qm_calculator import QM_calculator
-from misc import call_name
+from unixmd.qm.qm_calculator import QM_calculator
+from unixmd.misc import call_name
 import os
 
 class QChem(QM_calculator):

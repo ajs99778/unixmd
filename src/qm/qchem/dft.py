@@ -1,6 +1,6 @@
 from __future__ import division
-from qm.qchem.qchem import QChem
-from misc import au_to_A, eV_to_au
+from unixmd.qm.qchem.qchem import QChem
+from unixmd.misc import au_to_A, eV_to_au
 import os, shutil, re, textwrap, subprocess
 import numpy as np
 

@@ -1,5 +1,5 @@
 from __future__ import division
-from misc import eps, au_to_K, call_name, fs_to_au, cm_to_au
+from unixmd.misc import eps, au_to_K, call_name, fs_to_au, cm_to_au
 import textwrap
 import numpy as np
 

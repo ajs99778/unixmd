@@ -1,7 +1,7 @@
 from __future__ import division
-from build.el_propagator_ct import el_run
-from mqc.mqc import MQC
-from misc import eps, au_to_K, au_to_A, call_name, typewriter, gaussian1d
+from unixmd.mqc.el_propagator_ct import el_run
+from unixmd.mqc.mqc import MQC
+from unixmd.misc import eps, au_to_K, au_to_A, call_name, typewriter, gaussian1d
 import os, shutil, textwrap
 import numpy as np
 import pickle
