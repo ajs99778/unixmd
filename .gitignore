@@ -5,3 +5,4 @@
 /unixmd.egg-info
 /build
 /random-test
+*.c

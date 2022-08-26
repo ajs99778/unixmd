@@ -8,8 +8,18 @@ cdef extern from "rk4.c":
     void rk4(int nst, int nesteps, double dt, char *elec_object, double *energy, \
         double *energy_old, double **nacme, double **nacme_old, double complex *coef, \
         double complex **rho)
-
-def el_run(md):
+def el_run(
+    number_of_states,
+    number_of_elec_steps,
+    time_step,
+    current_energies,
+    previous_energies,
+    current_nacme,
+    previous_nacme,
+    state_coeff,
+    mol_rho,
+    elec_object,
+):
     cdef:
         char *elec_object_c
         double *energy
@@ -24,8 +34,9 @@ def el_run(md):
         double dt
 
     # Assign size variables
-    nst = md.mol.nst
-    nesteps, dt = md.nesteps, md.dt
+    nst = number_of_states
+    nesteps = number_of_elec_steps
+    dt = time_step
 
     # Allocate variables
     energy = <double*> PyMem_Malloc(nst * sizeof(double))
@@ -40,71 +51,54 @@ def el_run(md):
 
     # Assign variables from python to C
     for ist in range(nst):
-        energy[ist] = md.mol.states[ist].energy
-        energy_old[ist] = md.mol.states[ist].energy_old
+        energy[ist] = current_energies[ist]
+        energy_old[ist] = previous_energies[ist]
 
     for ist in range(nst):
         for jst in range(nst):
-            nacme[ist][jst] = md.mol.nacme[ist, jst]
-            nacme_old[ist][jst] = md.mol.nacme_old[ist, jst]
+            nacme[ist][jst] = current_nacme[ist, jst]
+            nacme_old[ist][jst] = previous_nacme[ist, jst]
 
     # Debug related
-    verbosity = md.verbosity
+    verbosity = 0
 
-    # Assign coef or rho with respect to propagation scheme
-    if (md.elec_object == "coefficient"):
+    # # Assign coef or rho with respect to propagation scheme
+    # if (elec_object == "coefficient"):
+    # 
+    #     coef = <double complex*> PyMem_Malloc(nst * sizeof(double complex))
+    # 
+    #     for ist in range(nst):
+    #         coef[ist] = md.mol.states[ist].coef
 
-        coef = <double complex*> PyMem_Malloc(nst * sizeof(double complex))
+    # elif (elec_object == "density"):
 
-        for ist in range(nst):
-            coef[ist] = md.mol.states[ist].coef
+    rho = <double complex**> PyMem_Malloc(nst * sizeof(double complex*))
+    for ist in range(nst):
+        rho[ist] = <double complex*> PyMem_Malloc(nst * sizeof(double complex))
+    
+    for ist in range(nst):
+        for jst in range(nst):
+            rho[ist][jst] = mol_rho[ist, jst]
 
-    elif (md.elec_object == "density"):
-
-        rho = <double complex**> PyMem_Malloc(nst * sizeof(double complex*))
-        for ist in range(nst):
-            rho[ist] = <double complex*> PyMem_Malloc(nst * sizeof(double complex))
-
-        for ist in range(nst):
-            for jst in range(nst):
-                rho[ist][jst] = md.mol.rho[ist, jst]
-
-    py_bytes = md.elec_object.encode()
+    py_bytes = elec_object.encode()
     elec_object_c = py_bytes
 
-    # Propagate electrons depending on the propagator
-    if (md.propagator == "rk4"):
-        rk4(nst, nesteps, dt, elec_object_c, energy, energy_old, nacme, nacme_old, coef, rho)
+    # Propagate electrons
+    rk4(nst, nesteps, dt, elec_object_c, energy, energy_old, nacme, nacme_old, coef, rho)
 
-    # Assign variables from C to python
-    if (md.elec_object == "coefficient"):
-
-        for ist in range(nst):
-            md.mol.states[ist].coef = coef[ist]
-
-        for ist in range(nst):
-            for jst in range(nst):
-                md.mol.rho[ist, jst] = np.conj(md.mol.states[ist].coef) * md.mol.states[jst].coef
-
-        PyMem_Free(coef)
-
-    elif (md.elec_object == "density"):
-
-        for ist in range(nst):
-            for jst in range(nst):
-                md.mol.rho[ist, jst] = rho[ist][jst]
-
-        for ist in range(nst):
-            PyMem_Free(rho[ist])
-        PyMem_Free(rho)
-
-    # Debug
-    if (verbosity >= 1):
-        for ist in range(nst):
-            md.dotpopnac[ist] = 0.
-            for jst in range(nst):
-                if (jst != ist):
-                    md.dotpopnac[ist] -= 2. * nacme[ist][jst] * md.mol.rho.real[jst, ist]
+    # # Assign variables from C to python
+    # if (md.elec_object == "coefficient"):
+    # 
+    #     for ist in range(nst):
+    #         md.mol.states[ist].coef = coef[ist]
+    # 
+    #     for ist in range(nst):
+    #         for jst in range(nst):
+    #             md.mol.rho[ist, jst] = np.conj(md.mol.states[ist].coef) * md.mol.states[jst].coef
+    # 
+    #     PyMem_Free(coef)
+    # 
+    # elif (md.elec_object == "density"):
 
     # Deallocate variables
     for ist in range(nst):
@@ -116,5 +110,13 @@ def el_run(md):
 
     PyMem_Free(nacme)
     PyMem_Free(nacme_old)
+    for ist in range(nst):
+        for jst in range(nst):
+            mol_rho[ist, jst] = rho[ist][jst]
+    
+    for ist in range(nst):
+        PyMem_Free(rho[ist])
+    PyMem_Free(rho)
 
+    
 

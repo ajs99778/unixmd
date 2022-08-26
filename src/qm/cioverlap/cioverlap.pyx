@@ -6,7 +6,23 @@ cdef extern from "tdnac.c":
         int *orb_ini, int *orb_final, double **nacme, double **ao_overlap, \
         double **mo_coef_old, double **mo_coef_new, double ***ci_coef_old, double ***ci_coef_new)
 
-def wf_overlap(qm, molecule, istep_py, dt_py):
+def wf_overlap(
+    num_states,
+    num_basis_funcs,
+    num_occupied,
+    num_virtual,
+    atomic_orbital_overlap,
+    previous_mo_coeff,
+    current_mo_coeff,
+    previous_nacme,
+    previous_ci_coeff,
+    current_ci_coeff,
+    istep_py,
+    dt_py,
+    initial_orb,
+    final_orb,
+    nacme_out,
+):
     cdef:
         int *orb_ini
         int *orb_final
@@ -23,11 +39,11 @@ def wf_overlap(qm, molecule, istep_py, dt_py):
     # Assign size variables
     dt = dt_py
     istep = istep_py
-    nst = molecule.nst
-    nbasis = qm.nbasis
-    norb = qm.norb
-    nocc = qm.nocc
-    nvirt = qm.nvirt
+    nst = num_states
+    nbasis = num_basis_funcs
+    nocc = num_occupied
+    nvirt = num_virtual
+    norb = nvirt + nocc
 
     # Allocate NACME variables
     orb_ini = <int*> PyMem_Malloc(1 * sizeof(int))
@@ -62,8 +78,8 @@ def wf_overlap(qm, molecule, istep_py, dt_py):
             ci_coef_new[ist][iorb] = <double*> PyMem_Malloc(nvirt * sizeof(double))
 
     # Assign NACME variables from python to C
-    orb_ini[0] = qm.orb_ini[0]
-    orb_final[0] = qm.orb_final[0]
+    orb_ini[0] = initial_orb[0]
+    orb_final[0] = final_orb[0]
 
     for ist in range(nst):
         for jst in range(nst):
@@ -71,36 +87,27 @@ def wf_overlap(qm, molecule, istep_py, dt_py):
 
     for ibasis in range(nbasis):
         for jbasis in range(nbasis):
-            ao_overlap[ibasis][jbasis] = qm.ao_overlap[ibasis, jbasis]
+            ao_overlap[ibasis][jbasis] = atomic_orbital_overlap[ibasis, jbasis]
     
     for iorb in range(norb):
         for ibasis in range(nbasis):
-            mo_coef_old[iorb][ibasis] = qm.mo_coef_old[iorb, ibasis]
-            mo_coef_new[iorb][ibasis] = qm.mo_coef_new[iorb, ibasis]
+            mo_coef_old[iorb][ibasis] = previous_mo_coeff[iorb, ibasis]
+            mo_coef_new[iorb][ibasis] = current_mo_coeff[iorb, ibasis]
 
     for ist in range(nst):
         for iorb in range(nocc):
             for jorb in range(nvirt):
-                ci_coef_old[ist][iorb][jorb] = qm.ci_coef_old[ist, iorb, jorb]
-                ci_coef_new[ist][iorb][jorb] = qm.ci_coef_new[ist, iorb, jorb]
+                ci_coef_old[ist][iorb][jorb] = previous_ci_coeff[ist, iorb, jorb]
+                ci_coef_new[ist][iorb][jorb] = current_ci_coeff[ist, iorb, jorb]
 
     # Calculate TDNAC term for CIoverlap
     TD_NAC(istep, nst, nbasis, norb, nocc, nvirt, dt, orb_ini, orb_final, nacme, \
         ao_overlap, mo_coef_old, mo_coef_new, ci_coef_old, ci_coef_new)
-
+    
     # Assign NACME variables from C to python
     for ist in range(nst):
         for jst in range(nst):
-             molecule.nacme[ist, jst] = nacme[ist][jst]
-
-    for iorb in range(norb):
-        for ibasis in range(nbasis):
-            qm.mo_coef_old[iorb, ibasis] = mo_coef_new[iorb][ibasis]
-
-    for ist in range(nst):
-        for iorb in range(nocc):
-            for jorb in range(nvirt):
-                qm.ci_coef_old[ist, iorb, jorb] = ci_coef_new[ist][iorb][jorb]
+            nacme_out[ist, jst] = nacme[ist][jst]
 
     # Deallocate NACME variables
     PyMem_Free(orb_ini)
@@ -108,9 +115,8 @@ def wf_overlap(qm, molecule, istep_py, dt_py):
 
     for ist in range(nst):
         PyMem_Free(nacme[ist])
-
     PyMem_Free(nacme)
-
+    
     for ibasis in range(nbasis):
         PyMem_Free(ao_overlap[ibasis])
 
@@ -133,5 +139,4 @@ def wf_overlap(qm, molecule, istep_py, dt_py):
 
     PyMem_Free(ci_coef_old)
     PyMem_Free(ci_coef_new)
-
 
