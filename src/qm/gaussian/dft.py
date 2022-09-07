@@ -359,7 +359,10 @@ class DFT(Gaussian):
         self.ci_coef_new[1:] = self.read_xy_coef(molecule, path_rwfdump, "g09.rwf") 
 
         # Calculate wavefunction overlap with orbital scheme
-        wf_overlap(self, molecule, istep, dt)
+        wf_overlap(
+            program_state,
+            program_state.step_size.as_atomic(),
+        )
 
     def read_ao_overlap(self, path_rwfdump, fn_rwf):
         """ Read a rwf file to obtain ao_overlap data

@@ -1226,7 +1226,6 @@ int __pyx_module_is_main_unixmd__qm__cioverlap = 0;
 /* Implementation of 'unixmd.qm.cioverlap' */
 static PyObject *__pyx_builtin_range;
 static const char __pyx_k_dt[] = "dt";
-static const char __pyx_k_qm[] = "qm";
 static const char __pyx_k_ist[] = "ist";
 static const char __pyx_k_jst[] = "jst";
 static const char __pyx_k_nst[] = "nst";
@@ -1246,8 +1245,7 @@ static const char __pyx_k_ibasis[] = "ibasis";
 static const char __pyx_k_jbasis[] = "jbasis";
 static const char __pyx_k_nbasis[] = "nbasis";
 static const char __pyx_k_orb_ini[] = "orb_ini";
-static const char __pyx_k_istep_py[] = "istep_py";
-static const char __pyx_k_molecule[] = "molecule";
+static const char __pyx_k_nacme_out[] = "nacme_out";
 static const char __pyx_k_orb_final[] = "orb_final";
 static const char __pyx_k_ao_overlap[] = "ao_overlap";
 static const char __pyx_k_wf_overlap[] = "wf_overlap";
@@ -1255,43 +1253,71 @@ static const char __pyx_k_ci_coef_new[] = "ci_coef_new";
 static const char __pyx_k_ci_coef_old[] = "ci_coef_old";
 static const char __pyx_k_mo_coef_new[] = "mo_coef_new";
 static const char __pyx_k_mo_coef_old[] = "mo_coef_old";
+static const char __pyx_k_current_step[] = "current_step";
+static const char __pyx_k_program_state[] = "program_state";
+static const char __pyx_k_current_ci_coeff[] = "current_ci_coeff";
+static const char __pyx_k_current_mo_coeff[] = "current_mo_coeff";
+static const char __pyx_k_previous_ci_coeff[] = "previous_ci_coeff";
+static const char __pyx_k_previous_mo_coeff[] = "previous_mo_coeff";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_unixmd_qm_cioverlap[] = "unixmd.qm.cioverlap";
+static const char __pyx_k_atomic_orbital_overlap[] = "atomic_orbital_overlap";
+static const char __pyx_k_current_ci_coefficients[] = "current_ci_coefficients";
+static const char __pyx_k_current_mo_coefficients[] = "current_mo_coefficients";
+static const char __pyx_k_number_of_alpha_virtual[] = "number_of_alpha_virtual";
+static const char __pyx_k_number_of_alpha_occupied[] = "number_of_alpha_occupied";
+static const char __pyx_k_previous_ci_coefficients[] = "previous_ci_coefficients";
+static const char __pyx_k_previous_mo_coefficients[] = "previous_mo_coefficients";
+static const char __pyx_k_number_of_basis_functions[] = "number_of_basis_functions";
+static const char __pyx_k_number_of_electronic_states[] = "number_of_electronic_states";
 static const char __pyx_k_src_qm_cioverlap_cioverlap_pyx[] = "src/qm/cioverlap/cioverlap.pyx";
 static PyObject *__pyx_n_s_ao_overlap;
+static PyObject *__pyx_n_s_atomic_orbital_overlap;
 static PyObject *__pyx_n_s_ci_coef_new;
 static PyObject *__pyx_n_s_ci_coef_old;
 static PyObject *__pyx_n_s_cline_in_traceback;
+static PyObject *__pyx_n_s_current_ci_coeff;
+static PyObject *__pyx_n_s_current_ci_coefficients;
+static PyObject *__pyx_n_s_current_mo_coeff;
+static PyObject *__pyx_n_s_current_mo_coefficients;
+static PyObject *__pyx_n_s_current_step;
 static PyObject *__pyx_n_s_dt;
 static PyObject *__pyx_n_s_dt_py;
 static PyObject *__pyx_n_s_ibasis;
 static PyObject *__pyx_n_s_iorb;
 static PyObject *__pyx_n_s_ist;
 static PyObject *__pyx_n_s_istep;
-static PyObject *__pyx_n_s_istep_py;
 static PyObject *__pyx_n_s_jbasis;
 static PyObject *__pyx_n_s_jorb;
 static PyObject *__pyx_n_s_jst;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_mo_coef_new;
 static PyObject *__pyx_n_s_mo_coef_old;
-static PyObject *__pyx_n_s_molecule;
 static PyObject *__pyx_n_s_nacme;
+static PyObject *__pyx_n_s_nacme_out;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_nbasis;
 static PyObject *__pyx_n_s_nocc;
 static PyObject *__pyx_n_s_norb;
 static PyObject *__pyx_n_s_nst;
+static PyObject *__pyx_n_s_number_of_alpha_occupied;
+static PyObject *__pyx_n_s_number_of_alpha_virtual;
+static PyObject *__pyx_n_s_number_of_basis_functions;
+static PyObject *__pyx_n_s_number_of_electronic_states;
 static PyObject *__pyx_n_s_nvirt;
 static PyObject *__pyx_n_s_orb_final;
 static PyObject *__pyx_n_s_orb_ini;
-static PyObject *__pyx_n_s_qm;
+static PyObject *__pyx_n_s_previous_ci_coeff;
+static PyObject *__pyx_n_s_previous_ci_coefficients;
+static PyObject *__pyx_n_s_previous_mo_coeff;
+static PyObject *__pyx_n_s_previous_mo_coefficients;
+static PyObject *__pyx_n_s_program_state;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_kp_s_src_qm_cioverlap_cioverlap_pyx;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_unixmd_qm_cioverlap;
 static PyObject *__pyx_n_s_wf_overlap;
-static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_qm, PyObject *__pyx_v_molecule, PyObject *__pyx_v_istep_py, PyObject *__pyx_v_dt_py); /* proto */
+static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_program_state, PyObject *__pyx_v_dt_py, PyObject *__pyx_v_nacme_out); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
@@ -1299,7 +1325,7 @@ static PyObject *__pyx_codeobj__2;
 /* "src/qm/cioverlap/cioverlap.pyx":9
  *         double **mo_coef_old, double **mo_coef_new, double ***ci_coef_old, double ***ci_coef_new)
  * 
- * def wf_overlap(qm, molecule, istep_py, dt_py):             # <<<<<<<<<<<<<<
+ * def wf_overlap(program_state, dt_py, nacme_out):             # <<<<<<<<<<<<<<
  *     cdef:
  *         int *orb_ini
  */
@@ -1308,10 +1334,9 @@ static PyObject *__pyx_codeobj__2;
 static PyObject *__pyx_pw_6unixmd_2qm_9cioverlap_1wf_overlap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static PyMethodDef __pyx_mdef_6unixmd_2qm_9cioverlap_1wf_overlap = {"wf_overlap", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6unixmd_2qm_9cioverlap_1wf_overlap, METH_VARARGS|METH_KEYWORDS, 0};
 static PyObject *__pyx_pw_6unixmd_2qm_9cioverlap_1wf_overlap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyObject *__pyx_v_qm = 0;
-  PyObject *__pyx_v_molecule = 0;
-  PyObject *__pyx_v_istep_py = 0;
+  PyObject *__pyx_v_program_state = 0;
   PyObject *__pyx_v_dt_py = 0;
+  PyObject *__pyx_v_nacme_out = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1319,14 +1344,12 @@ static PyObject *__pyx_pw_6unixmd_2qm_9cioverlap_1wf_overlap(PyObject *__pyx_sel
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("wf_overlap (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_qm,&__pyx_n_s_molecule,&__pyx_n_s_istep_py,&__pyx_n_s_dt_py,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_program_state,&__pyx_n_s_dt_py,&__pyx_n_s_nacme_out,0};
+    PyObject* values[3] = {0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         CYTHON_FALLTHROUGH;
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
@@ -1339,59 +1362,51 @@ static PyObject *__pyx_pw_6unixmd_2qm_9cioverlap_1wf_overlap(PyObject *__pyx_sel
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_qm)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_program_state)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_molecule)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dt_py)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 4, 4, 1); __PYX_ERR(0, 9, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 3, 3, 1); __PYX_ERR(0, 9, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_istep_py)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_nacme_out)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 4, 4, 2); __PYX_ERR(0, 9, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_dt_py)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 4, 4, 3); __PYX_ERR(0, 9, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 3, 3, 2); __PYX_ERR(0, 9, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "wf_overlap") < 0)) __PYX_ERR(0, 9, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
-    __pyx_v_qm = values[0];
-    __pyx_v_molecule = values[1];
-    __pyx_v_istep_py = values[2];
-    __pyx_v_dt_py = values[3];
+    __pyx_v_program_state = values[0];
+    __pyx_v_dt_py = values[1];
+    __pyx_v_nacme_out = values[2];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 9, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("wf_overlap", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 9, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("unixmd.qm.cioverlap.wf_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(__pyx_self, __pyx_v_qm, __pyx_v_molecule, __pyx_v_istep_py, __pyx_v_dt_py);
+  __pyx_r = __pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(__pyx_self, __pyx_v_program_state, __pyx_v_dt_py, __pyx_v_nacme_out);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_qm, PyObject *__pyx_v_molecule, PyObject *__pyx_v_istep_py, PyObject *__pyx_v_dt_py) {
+static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_program_state, PyObject *__pyx_v_dt_py, PyObject *__pyx_v_nacme_out) {
   int *__pyx_v_orb_ini;
   int *__pyx_v_orb_final;
   double **__pyx_v_nacme;
@@ -1412,12 +1427,16 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
   int __pyx_v_nocc;
   int __pyx_v_nvirt;
   double __pyx_v_dt;
+  PyObject *__pyx_v_previous_mo_coeff = NULL;
+  PyObject *__pyx_v_current_mo_coeff = NULL;
+  PyObject *__pyx_v_previous_ci_coeff = NULL;
+  PyObject *__pyx_v_current_ci_coeff = NULL;
   int __pyx_v_jst;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   double __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
   int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
@@ -1429,8 +1448,6 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
   int __pyx_t_12;
   int __pyx_t_13;
   int __pyx_t_14;
-  PyObject *__pyx_t_15 = NULL;
-  PyObject *__pyx_t_16 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1440,8 +1457,8 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  * 
  *     # Assign size variables
  *     dt = dt_py             # <<<<<<<<<<<<<<
- *     istep = istep_py
- *     nst = molecule.nst
+ *     istep = program_state.current_step
+ *     nst = program_state.number_of_electronic_states
  */
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_dt_py); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
   __pyx_v_dt = __pyx_t_1;
@@ -1449,79 +1466,126 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
   /* "src/qm/cioverlap/cioverlap.pyx":25
  *     # Assign size variables
  *     dt = dt_py
- *     istep = istep_py             # <<<<<<<<<<<<<<
- *     nst = molecule.nst
- *     nbasis = qm.nbasis
+ *     istep = program_state.current_step             # <<<<<<<<<<<<<<
+ *     nst = program_state.number_of_electronic_states
+ *     nbasis = program_state.number_of_basis_functions
  */
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_v_istep_py); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L1_error)
-  __pyx_v_istep = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_current_step); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_istep = __pyx_t_3;
 
   /* "src/qm/cioverlap/cioverlap.pyx":26
  *     dt = dt_py
- *     istep = istep_py
- *     nst = molecule.nst             # <<<<<<<<<<<<<<
- *     nbasis = qm.nbasis
- *     norb = qm.norb
+ *     istep = program_state.current_step
+ *     nst = program_state.number_of_electronic_states             # <<<<<<<<<<<<<<
+ *     nbasis = program_state.number_of_basis_functions
+ *     nocc = program_state.number_of_alpha_occupied
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_molecule, __pyx_n_s_nst); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_nst = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_number_of_electronic_states); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_nst = __pyx_t_3;
 
   /* "src/qm/cioverlap/cioverlap.pyx":27
- *     istep = istep_py
- *     nst = molecule.nst
- *     nbasis = qm.nbasis             # <<<<<<<<<<<<<<
- *     norb = qm.norb
- *     nocc = qm.nocc
+ *     istep = program_state.current_step
+ *     nst = program_state.number_of_electronic_states
+ *     nbasis = program_state.number_of_basis_functions             # <<<<<<<<<<<<<<
+ *     nocc = program_state.number_of_alpha_occupied
+ *     nvirt = program_state.number_of_alpha_virtual
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_nbasis); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 27, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_nbasis = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_number_of_basis_functions); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_nbasis = __pyx_t_3;
 
   /* "src/qm/cioverlap/cioverlap.pyx":28
- *     nst = molecule.nst
- *     nbasis = qm.nbasis
- *     norb = qm.norb             # <<<<<<<<<<<<<<
- *     nocc = qm.nocc
- *     nvirt = qm.nvirt
+ *     nst = program_state.number_of_electronic_states
+ *     nbasis = program_state.number_of_basis_functions
+ *     nocc = program_state.number_of_alpha_occupied             # <<<<<<<<<<<<<<
+ *     nvirt = program_state.number_of_alpha_virtual
+ *     norb = nvirt + nocc
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_norb); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_norb = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_number_of_alpha_occupied); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_nocc = __pyx_t_3;
 
   /* "src/qm/cioverlap/cioverlap.pyx":29
- *     nbasis = qm.nbasis
- *     norb = qm.norb
- *     nocc = qm.nocc             # <<<<<<<<<<<<<<
- *     nvirt = qm.nvirt
+ *     nbasis = program_state.number_of_basis_functions
+ *     nocc = program_state.number_of_alpha_occupied
+ *     nvirt = program_state.number_of_alpha_virtual             # <<<<<<<<<<<<<<
+ *     norb = nvirt + nocc
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_nocc); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_nocc = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_number_of_alpha_virtual); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_nvirt = __pyx_t_3;
 
   /* "src/qm/cioverlap/cioverlap.pyx":30
- *     norb = qm.norb
- *     nocc = qm.nocc
- *     nvirt = qm.nvirt             # <<<<<<<<<<<<<<
+ *     nocc = program_state.number_of_alpha_occupied
+ *     nvirt = program_state.number_of_alpha_virtual
+ *     norb = nvirt + nocc             # <<<<<<<<<<<<<<
+ * 
+ *     previous_mo_coeff = program_state.previous_mo_coefficients
+ */
+  __pyx_v_norb = (__pyx_v_nvirt + __pyx_v_nocc);
+
+  /* "src/qm/cioverlap/cioverlap.pyx":32
+ *     norb = nvirt + nocc
+ * 
+ *     previous_mo_coeff = program_state.previous_mo_coefficients             # <<<<<<<<<<<<<<
+ *     current_mo_coeff = program_state.current_mo_coefficients
+ *     previous_ci_coeff = program_state.previous_ci_coefficients
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_previous_mo_coefficients); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_previous_mo_coeff = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "src/qm/cioverlap/cioverlap.pyx":33
+ * 
+ *     previous_mo_coeff = program_state.previous_mo_coefficients
+ *     current_mo_coeff = program_state.current_mo_coefficients             # <<<<<<<<<<<<<<
+ *     previous_ci_coeff = program_state.previous_ci_coefficients
+ *     current_ci_coeff = program_state.current_ci_coefficients
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_current_mo_coefficients); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_current_mo_coeff = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "src/qm/cioverlap/cioverlap.pyx":34
+ *     previous_mo_coeff = program_state.previous_mo_coefficients
+ *     current_mo_coeff = program_state.current_mo_coefficients
+ *     previous_ci_coeff = program_state.previous_ci_coefficients             # <<<<<<<<<<<<<<
+ *     current_ci_coeff = program_state.current_ci_coefficients
+ * 
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_previous_ci_coefficients); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_previous_ci_coeff = __pyx_t_2;
+  __pyx_t_2 = 0;
+
+  /* "src/qm/cioverlap/cioverlap.pyx":35
+ *     current_mo_coeff = program_state.current_mo_coefficients
+ *     previous_ci_coeff = program_state.previous_ci_coefficients
+ *     current_ci_coeff = program_state.current_ci_coefficients             # <<<<<<<<<<<<<<
  * 
  *     # Allocate NACME variables
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_nvirt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_v_nvirt = __pyx_t_2;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_current_ci_coefficients); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v_current_ci_coeff = __pyx_t_2;
+  __pyx_t_2 = 0;
 
-  /* "src/qm/cioverlap/cioverlap.pyx":33
+  /* "src/qm/cioverlap/cioverlap.pyx":38
  * 
  *     # Allocate NACME variables
  *     orb_ini = <int*> PyMem_Malloc(1 * sizeof(int))             # <<<<<<<<<<<<<<
@@ -1530,7 +1594,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_orb_ini = ((int *)PyMem_Malloc((1 * (sizeof(int)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":34
+  /* "src/qm/cioverlap/cioverlap.pyx":39
  *     # Allocate NACME variables
  *     orb_ini = <int*> PyMem_Malloc(1 * sizeof(int))
  *     orb_final = <int*> PyMem_Malloc(1 * sizeof(int))             # <<<<<<<<<<<<<<
@@ -1539,7 +1603,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_orb_final = ((int *)PyMem_Malloc((1 * (sizeof(int)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":36
+  /* "src/qm/cioverlap/cioverlap.pyx":41
  *     orb_final = <int*> PyMem_Malloc(1 * sizeof(int))
  * 
  *     nacme = <double**> PyMem_Malloc(nst * sizeof(double*))             # <<<<<<<<<<<<<<
@@ -1548,7 +1612,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_nacme = ((double **)PyMem_Malloc((__pyx_v_nst * (sizeof(double *)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":38
+  /* "src/qm/cioverlap/cioverlap.pyx":43
  *     nacme = <double**> PyMem_Malloc(nst * sizeof(double*))
  * 
  *     ao_overlap = <double**> PyMem_Malloc(nbasis * sizeof(double*))             # <<<<<<<<<<<<<<
@@ -1557,7 +1621,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_ao_overlap = ((double **)PyMem_Malloc((__pyx_v_nbasis * (sizeof(double *)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":39
+  /* "src/qm/cioverlap/cioverlap.pyx":44
  * 
  *     ao_overlap = <double**> PyMem_Malloc(nbasis * sizeof(double*))
  *     mo_coef_old = <double**> PyMem_Malloc(norb * sizeof(double*))             # <<<<<<<<<<<<<<
@@ -1566,7 +1630,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_mo_coef_old = ((double **)PyMem_Malloc((__pyx_v_norb * (sizeof(double *)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":40
+  /* "src/qm/cioverlap/cioverlap.pyx":45
  *     ao_overlap = <double**> PyMem_Malloc(nbasis * sizeof(double*))
  *     mo_coef_old = <double**> PyMem_Malloc(norb * sizeof(double*))
  *     mo_coef_new = <double**> PyMem_Malloc(norb * sizeof(double*))             # <<<<<<<<<<<<<<
@@ -1575,19 +1639,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_mo_coef_new = ((double **)PyMem_Malloc((__pyx_v_norb * (sizeof(double *)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":42
+  /* "src/qm/cioverlap/cioverlap.pyx":47
  *     mo_coef_new = <double**> PyMem_Malloc(norb * sizeof(double*))
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         nacme[ist] = <double*> PyMem_Malloc(nst * sizeof(double))
  * 
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":43
+    /* "src/qm/cioverlap/cioverlap.pyx":48
  * 
  *     for ist in range(nst):
  *         nacme[ist] = <double*> PyMem_Malloc(nst * sizeof(double))             # <<<<<<<<<<<<<<
@@ -1597,19 +1661,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     (__pyx_v_nacme[__pyx_v_ist]) = ((double *)PyMem_Malloc((__pyx_v_nst * (sizeof(double)))));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":45
+  /* "src/qm/cioverlap/cioverlap.pyx":50
  *         nacme[ist] = <double*> PyMem_Malloc(nst * sizeof(double))
  * 
  *     for ibasis in range(nbasis):             # <<<<<<<<<<<<<<
  *         ao_overlap[ibasis] = <double*> PyMem_Malloc(nbasis * sizeof(double))
  * 
  */
-  __pyx_t_2 = __pyx_v_nbasis;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nbasis;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ibasis = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":46
+    /* "src/qm/cioverlap/cioverlap.pyx":51
  * 
  *     for ibasis in range(nbasis):
  *         ao_overlap[ibasis] = <double*> PyMem_Malloc(nbasis * sizeof(double))             # <<<<<<<<<<<<<<
@@ -1619,19 +1683,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     (__pyx_v_ao_overlap[__pyx_v_ibasis]) = ((double *)PyMem_Malloc((__pyx_v_nbasis * (sizeof(double)))));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":48
+  /* "src/qm/cioverlap/cioverlap.pyx":53
  *         ao_overlap[ibasis] = <double*> PyMem_Malloc(nbasis * sizeof(double))
  * 
  *     for iorb in range(norb):             # <<<<<<<<<<<<<<
  *         mo_coef_old[iorb] = <double*> PyMem_Malloc(nbasis * sizeof(double))
  *         mo_coef_new[iorb] = <double*> PyMem_Malloc(nbasis * sizeof(double))
  */
-  __pyx_t_2 = __pyx_v_norb;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_norb;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_iorb = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":49
+    /* "src/qm/cioverlap/cioverlap.pyx":54
  * 
  *     for iorb in range(norb):
  *         mo_coef_old[iorb] = <double*> PyMem_Malloc(nbasis * sizeof(double))             # <<<<<<<<<<<<<<
@@ -1640,7 +1704,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
     (__pyx_v_mo_coef_old[__pyx_v_iorb]) = ((double *)PyMem_Malloc((__pyx_v_nbasis * (sizeof(double)))));
 
-    /* "src/qm/cioverlap/cioverlap.pyx":50
+    /* "src/qm/cioverlap/cioverlap.pyx":55
  *     for iorb in range(norb):
  *         mo_coef_old[iorb] = <double*> PyMem_Malloc(nbasis * sizeof(double))
  *         mo_coef_new[iorb] = <double*> PyMem_Malloc(nbasis * sizeof(double))             # <<<<<<<<<<<<<<
@@ -1650,7 +1714,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     (__pyx_v_mo_coef_new[__pyx_v_iorb]) = ((double *)PyMem_Malloc((__pyx_v_nbasis * (sizeof(double)))));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":52
+  /* "src/qm/cioverlap/cioverlap.pyx":57
  *         mo_coef_new[iorb] = <double*> PyMem_Malloc(nbasis * sizeof(double))
  * 
  *     ci_coef_old = <double***> PyMem_Malloc(nst * sizeof(double**))             # <<<<<<<<<<<<<<
@@ -1659,7 +1723,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_ci_coef_old = ((double ***)PyMem_Malloc((__pyx_v_nst * (sizeof(double **)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":53
+  /* "src/qm/cioverlap/cioverlap.pyx":58
  * 
  *     ci_coef_old = <double***> PyMem_Malloc(nst * sizeof(double**))
  *     ci_coef_new = <double***> PyMem_Malloc(nst * sizeof(double**))             # <<<<<<<<<<<<<<
@@ -1668,19 +1732,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   __pyx_v_ci_coef_new = ((double ***)PyMem_Malloc((__pyx_v_nst * (sizeof(double **)))));
 
-  /* "src/qm/cioverlap/cioverlap.pyx":55
+  /* "src/qm/cioverlap/cioverlap.pyx":60
  *     ci_coef_new = <double***> PyMem_Malloc(nst * sizeof(double**))
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         ci_coef_old[ist] = <double**> PyMem_Malloc(nocc * sizeof(double*))
  *         ci_coef_new[ist] = <double**> PyMem_Malloc(nocc * sizeof(double*))
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":56
+    /* "src/qm/cioverlap/cioverlap.pyx":61
  * 
  *     for ist in range(nst):
  *         ci_coef_old[ist] = <double**> PyMem_Malloc(nocc * sizeof(double*))             # <<<<<<<<<<<<<<
@@ -1689,7 +1753,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
     (__pyx_v_ci_coef_old[__pyx_v_ist]) = ((double **)PyMem_Malloc((__pyx_v_nocc * (sizeof(double *)))));
 
-    /* "src/qm/cioverlap/cioverlap.pyx":57
+    /* "src/qm/cioverlap/cioverlap.pyx":62
  *     for ist in range(nst):
  *         ci_coef_old[ist] = <double**> PyMem_Malloc(nocc * sizeof(double*))
  *         ci_coef_new[ist] = <double**> PyMem_Malloc(nocc * sizeof(double*))             # <<<<<<<<<<<<<<
@@ -1699,19 +1763,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     (__pyx_v_ci_coef_new[__pyx_v_ist]) = ((double **)PyMem_Malloc((__pyx_v_nocc * (sizeof(double *)))));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":59
+  /* "src/qm/cioverlap/cioverlap.pyx":64
  *         ci_coef_new[ist] = <double**> PyMem_Malloc(nocc * sizeof(double*))
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         for iorb in range(nocc):
  *             ci_coef_old[ist][iorb] = <double*> PyMem_Malloc(nvirt * sizeof(double))
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":60
+    /* "src/qm/cioverlap/cioverlap.pyx":65
  * 
  *     for ist in range(nst):
  *         for iorb in range(nocc):             # <<<<<<<<<<<<<<
@@ -1723,7 +1787,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_iorb = __pyx_t_8;
 
-      /* "src/qm/cioverlap/cioverlap.pyx":61
+      /* "src/qm/cioverlap/cioverlap.pyx":66
  *     for ist in range(nst):
  *         for iorb in range(nocc):
  *             ci_coef_old[ist][iorb] = <double*> PyMem_Malloc(nvirt * sizeof(double))             # <<<<<<<<<<<<<<
@@ -1732,7 +1796,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
       ((__pyx_v_ci_coef_old[__pyx_v_ist])[__pyx_v_iorb]) = ((double *)PyMem_Malloc((__pyx_v_nvirt * (sizeof(double)))));
 
-      /* "src/qm/cioverlap/cioverlap.pyx":62
+      /* "src/qm/cioverlap/cioverlap.pyx":67
  *         for iorb in range(nocc):
  *             ci_coef_old[ist][iorb] = <double*> PyMem_Malloc(nvirt * sizeof(double))
  *             ci_coef_new[ist][iorb] = <double*> PyMem_Malloc(nvirt * sizeof(double))             # <<<<<<<<<<<<<<
@@ -1743,51 +1807,51 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":65
+  /* "src/qm/cioverlap/cioverlap.pyx":70
  * 
  *     # Assign NACME variables from python to C
- *     orb_ini[0] = qm.orb_ini[0]             # <<<<<<<<<<<<<<
- *     orb_final[0] = qm.orb_final[0]
+ *     orb_ini[0] = program_state.orb_ini[0]             # <<<<<<<<<<<<<<
+ *     orb_final[0] = program_state.orb_final[0]
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_orb_ini); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_orb_ini); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_9); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  (__pyx_v_orb_ini[0]) = __pyx_t_2;
+  (__pyx_v_orb_ini[0]) = __pyx_t_3;
 
-  /* "src/qm/cioverlap/cioverlap.pyx":66
+  /* "src/qm/cioverlap/cioverlap.pyx":71
  *     # Assign NACME variables from python to C
- *     orb_ini[0] = qm.orb_ini[0]
- *     orb_final[0] = qm.orb_final[0]             # <<<<<<<<<<<<<<
+ *     orb_ini[0] = program_state.orb_ini[0]
+ *     orb_final[0] = program_state.orb_final[0]             # <<<<<<<<<<<<<<
  * 
  *     for ist in range(nst):
  */
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_orb_final); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_orb_final); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_9, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_9, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_t_2 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_2 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 66, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  (__pyx_v_orb_final[0]) = __pyx_t_2;
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 71, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  (__pyx_v_orb_final[0]) = __pyx_t_3;
 
-  /* "src/qm/cioverlap/cioverlap.pyx":68
- *     orb_final[0] = qm.orb_final[0]
+  /* "src/qm/cioverlap/cioverlap.pyx":73
+ *     orb_final[0] = program_state.orb_final[0]
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         for jst in range(nst):
  *             nacme[ist][jst] = 0.
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":69
+    /* "src/qm/cioverlap/cioverlap.pyx":74
  * 
  *     for ist in range(nst):
  *         for jst in range(nst):             # <<<<<<<<<<<<<<
@@ -1799,7 +1863,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_jst = __pyx_t_8;
 
-      /* "src/qm/cioverlap/cioverlap.pyx":70
+      /* "src/qm/cioverlap/cioverlap.pyx":75
  *     for ist in range(nst):
  *         for jst in range(nst):
  *             nacme[ist][jst] = 0.             # <<<<<<<<<<<<<<
@@ -1810,23 +1874,23 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":72
+  /* "src/qm/cioverlap/cioverlap.pyx":77
  *             nacme[ist][jst] = 0.
  * 
  *     for ibasis in range(nbasis):             # <<<<<<<<<<<<<<
  *         for jbasis in range(nbasis):
- *             ao_overlap[ibasis][jbasis] = qm.ao_overlap[ibasis, jbasis]
+ *             ao_overlap[ibasis][jbasis] = program_state.atomic_orbital_overlap[ibasis, jbasis]
  */
-  __pyx_t_2 = __pyx_v_nbasis;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nbasis;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ibasis = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":73
+    /* "src/qm/cioverlap/cioverlap.pyx":78
  * 
  *     for ibasis in range(nbasis):
  *         for jbasis in range(nbasis):             # <<<<<<<<<<<<<<
- *             ao_overlap[ibasis][jbasis] = qm.ao_overlap[ibasis, jbasis]
+ *             ao_overlap[ibasis][jbasis] = program_state.atomic_orbital_overlap[ibasis, jbasis]
  * 
  */
     __pyx_t_6 = __pyx_v_nbasis;
@@ -1834,102 +1898,18 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_jbasis = __pyx_t_8;
 
-      /* "src/qm/cioverlap/cioverlap.pyx":74
+      /* "src/qm/cioverlap/cioverlap.pyx":79
  *     for ibasis in range(nbasis):
  *         for jbasis in range(nbasis):
- *             ao_overlap[ibasis][jbasis] = qm.ao_overlap[ibasis, jbasis]             # <<<<<<<<<<<<<<
+ *             ao_overlap[ibasis][jbasis] = program_state.atomic_orbital_overlap[ibasis, jbasis]             # <<<<<<<<<<<<<<
  * 
  *     for iorb in range(norb):
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_ao_overlap); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 74, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_program_state, __pyx_n_s_atomic_orbital_overlap); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_jbasis); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 74, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_11 = PyTuple_New(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 74, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_11);
-      __Pyx_GIVEREF(__pyx_t_9);
-      PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_9);
-      __Pyx_GIVEREF(__pyx_t_10);
-      PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_10);
-      __pyx_t_9 = 0;
-      __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 74, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_10); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 74, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      ((__pyx_v_ao_overlap[__pyx_v_ibasis])[__pyx_v_jbasis]) = __pyx_t_1;
-    }
-  }
-
-  /* "src/qm/cioverlap/cioverlap.pyx":76
- *             ao_overlap[ibasis][jbasis] = qm.ao_overlap[ibasis, jbasis]
- * 
- *     for iorb in range(norb):             # <<<<<<<<<<<<<<
- *         for ibasis in range(nbasis):
- *             mo_coef_old[iorb][ibasis] = qm.mo_coef_old[iorb, ibasis]
- */
-  __pyx_t_2 = __pyx_v_norb;
-  __pyx_t_4 = __pyx_t_2;
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_iorb = __pyx_t_5;
-
-    /* "src/qm/cioverlap/cioverlap.pyx":77
- * 
- *     for iorb in range(norb):
- *         for ibasis in range(nbasis):             # <<<<<<<<<<<<<<
- *             mo_coef_old[iorb][ibasis] = qm.mo_coef_old[iorb, ibasis]
- *             mo_coef_new[iorb][ibasis] = qm.mo_coef_new[iorb, ibasis]
- */
-    __pyx_t_6 = __pyx_v_nbasis;
-    __pyx_t_7 = __pyx_t_6;
-    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-      __pyx_v_ibasis = __pyx_t_8;
-
-      /* "src/qm/cioverlap/cioverlap.pyx":78
- *     for iorb in range(norb):
- *         for ibasis in range(nbasis):
- *             mo_coef_old[iorb][ibasis] = qm.mo_coef_old[iorb, ibasis]             # <<<<<<<<<<<<<<
- *             mo_coef_new[iorb][ibasis] = qm.mo_coef_new[iorb, ibasis]
- * 
- */
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_mo_coef_old); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 78, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 78, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 78, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_GIVEREF(__pyx_t_11);
-      PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_11);
-      __Pyx_GIVEREF(__pyx_t_3);
-      PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_3);
-      __pyx_t_11 = 0;
-      __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_10, __pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 78, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 78, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      ((__pyx_v_mo_coef_old[__pyx_v_iorb])[__pyx_v_ibasis]) = __pyx_t_1;
-
-      /* "src/qm/cioverlap/cioverlap.pyx":79
- *         for ibasis in range(nbasis):
- *             mo_coef_old[iorb][ibasis] = qm.mo_coef_old[iorb, ibasis]
- *             mo_coef_new[iorb][ibasis] = qm.mo_coef_new[iorb, ibasis]             # <<<<<<<<<<<<<<
- * 
- *     for ist in range(nst):
- */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_mo_coef_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 79, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_jbasis); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __pyx_t_11 = PyTuple_New(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
@@ -1939,124 +1919,196 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
       PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_10);
       __pyx_t_9 = 0;
       __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_10); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      ((__pyx_v_mo_coef_new[__pyx_v_iorb])[__pyx_v_ibasis]) = __pyx_t_1;
+      ((__pyx_v_ao_overlap[__pyx_v_ibasis])[__pyx_v_jbasis]) = __pyx_t_1;
     }
   }
 
   /* "src/qm/cioverlap/cioverlap.pyx":81
- *             mo_coef_new[iorb][ibasis] = qm.mo_coef_new[iorb, ibasis]
+ *             ao_overlap[ibasis][jbasis] = program_state.atomic_orbital_overlap[ibasis, jbasis]
+ * 
+ *     for iorb in range(norb):             # <<<<<<<<<<<<<<
+ *         for ibasis in range(nbasis):
+ *             mo_coef_old[iorb][ibasis] = previous_mo_coeff[iorb, ibasis]
+ */
+  __pyx_t_3 = __pyx_v_norb;
+  __pyx_t_4 = __pyx_t_3;
+  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
+    __pyx_v_iorb = __pyx_t_5;
+
+    /* "src/qm/cioverlap/cioverlap.pyx":82
+ * 
+ *     for iorb in range(norb):
+ *         for ibasis in range(nbasis):             # <<<<<<<<<<<<<<
+ *             mo_coef_old[iorb][ibasis] = previous_mo_coeff[iorb, ibasis]
+ *             mo_coef_new[iorb][ibasis] = current_mo_coeff[iorb, ibasis]
+ */
+    __pyx_t_6 = __pyx_v_nbasis;
+    __pyx_t_7 = __pyx_t_6;
+    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
+      __pyx_v_ibasis = __pyx_t_8;
+
+      /* "src/qm/cioverlap/cioverlap.pyx":83
+ *     for iorb in range(norb):
+ *         for ibasis in range(nbasis):
+ *             mo_coef_old[iorb][ibasis] = previous_mo_coeff[iorb, ibasis]             # <<<<<<<<<<<<<<
+ *             mo_coef_new[iorb][ibasis] = current_mo_coeff[iorb, ibasis]
+ * 
+ */
+      __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_GIVEREF(__pyx_t_10);
+      PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_10);
+      __Pyx_GIVEREF(__pyx_t_11);
+      PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_11);
+      __pyx_t_10 = 0;
+      __pyx_t_11 = 0;
+      __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_v_previous_mo_coeff, __pyx_t_2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_11); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+      ((__pyx_v_mo_coef_old[__pyx_v_iorb])[__pyx_v_ibasis]) = __pyx_t_1;
+
+      /* "src/qm/cioverlap/cioverlap.pyx":84
+ *         for ibasis in range(nbasis):
+ *             mo_coef_old[iorb][ibasis] = previous_mo_coeff[iorb, ibasis]
+ *             mo_coef_new[iorb][ibasis] = current_mo_coeff[iorb, ibasis]             # <<<<<<<<<<<<<<
+ * 
+ *     for ist in range(nst):
+ */
+      __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_GIVEREF(__pyx_t_11);
+      PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_t_11);
+      __Pyx_GIVEREF(__pyx_t_2);
+      PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_2);
+      __pyx_t_11 = 0;
+      __pyx_t_2 = 0;
+      __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_v_current_mo_coeff, __pyx_t_10); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 84, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      ((__pyx_v_mo_coef_new[__pyx_v_iorb])[__pyx_v_ibasis]) = __pyx_t_1;
+    }
+  }
+
+  /* "src/qm/cioverlap/cioverlap.pyx":86
+ *             mo_coef_new[iorb][ibasis] = current_mo_coeff[iorb, ibasis]
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         for iorb in range(nocc):
  *             for jorb in range(nvirt):
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":82
+    /* "src/qm/cioverlap/cioverlap.pyx":87
  * 
  *     for ist in range(nst):
  *         for iorb in range(nocc):             # <<<<<<<<<<<<<<
  *             for jorb in range(nvirt):
- *                 ci_coef_old[ist][iorb][jorb] = qm.ci_coef_old[ist, iorb, jorb]
+ *                 ci_coef_old[ist][iorb][jorb] = previous_ci_coeff[ist, iorb, jorb]
  */
     __pyx_t_6 = __pyx_v_nocc;
     __pyx_t_7 = __pyx_t_6;
     for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_iorb = __pyx_t_8;
 
-      /* "src/qm/cioverlap/cioverlap.pyx":83
+      /* "src/qm/cioverlap/cioverlap.pyx":88
  *     for ist in range(nst):
  *         for iorb in range(nocc):
  *             for jorb in range(nvirt):             # <<<<<<<<<<<<<<
- *                 ci_coef_old[ist][iorb][jorb] = qm.ci_coef_old[ist, iorb, jorb]
- *                 ci_coef_new[ist][iorb][jorb] = qm.ci_coef_new[ist, iorb, jorb]
+ *                 ci_coef_old[ist][iorb][jorb] = previous_ci_coeff[ist, iorb, jorb]
+ *                 ci_coef_new[ist][iorb][jorb] = current_ci_coeff[ist, iorb, jorb]
  */
       __pyx_t_12 = __pyx_v_nvirt;
       __pyx_t_13 = __pyx_t_12;
       for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
         __pyx_v_jorb = __pyx_t_14;
 
-        /* "src/qm/cioverlap/cioverlap.pyx":84
+        /* "src/qm/cioverlap/cioverlap.pyx":89
  *         for iorb in range(nocc):
  *             for jorb in range(nvirt):
- *                 ci_coef_old[ist][iorb][jorb] = qm.ci_coef_old[ist, iorb, jorb]             # <<<<<<<<<<<<<<
- *                 ci_coef_new[ist][iorb][jorb] = qm.ci_coef_new[ist, iorb, jorb]
+ *                 ci_coef_old[ist][iorb][jorb] = previous_ci_coeff[ist, iorb, jorb]             # <<<<<<<<<<<<<<
+ *                 ci_coef_new[ist][iorb][jorb] = current_ci_coeff[ist, iorb, jorb]
  * 
  */
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_ci_coef_old); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 84, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 89, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 84, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_jorb); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 89, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_jorb); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 84, __pyx_L1_error)
+        __pyx_t_9 = PyTuple_New(3); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 89, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_15 = PyTuple_New(3); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 84, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
+        __Pyx_GIVEREF(__pyx_t_2);
+        PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_2);
+        __Pyx_GIVEREF(__pyx_t_10);
+        PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_10);
         __Pyx_GIVEREF(__pyx_t_11);
-        PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_11);
-        __Pyx_GIVEREF(__pyx_t_3);
-        PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_3);
-        __Pyx_GIVEREF(__pyx_t_9);
-        PyTuple_SET_ITEM(__pyx_t_15, 2, __pyx_t_9);
+        PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_t_11);
+        __pyx_t_2 = 0;
+        __pyx_t_10 = 0;
         __pyx_t_11 = 0;
-        __pyx_t_3 = 0;
-        __pyx_t_9 = 0;
-        __pyx_t_9 = __Pyx_PyObject_GetItem(__pyx_t_10, __pyx_t_15); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 84, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-        __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_9); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 84, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_v_previous_ci_coeff, __pyx_t_9); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 89, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_11);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_11); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         (((__pyx_v_ci_coef_old[__pyx_v_ist])[__pyx_v_iorb])[__pyx_v_jorb]) = __pyx_t_1;
 
-        /* "src/qm/cioverlap/cioverlap.pyx":85
+        /* "src/qm/cioverlap/cioverlap.pyx":90
  *             for jorb in range(nvirt):
- *                 ci_coef_old[ist][iorb][jorb] = qm.ci_coef_old[ist, iorb, jorb]
- *                 ci_coef_new[ist][iorb][jorb] = qm.ci_coef_new[ist, iorb, jorb]             # <<<<<<<<<<<<<<
+ *                 ci_coef_old[ist][iorb][jorb] = previous_ci_coeff[ist, iorb, jorb]
+ *                 ci_coef_new[ist][iorb][jorb] = current_ci_coeff[ist, iorb, jorb]             # <<<<<<<<<<<<<<
  * 
  *     # Calculate TDNAC term for CIoverlap
  */
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_ci_coef_new); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 85, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_15 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 85, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
-        __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 85, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_jorb); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_11 = PyTuple_New(3); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 85, __pyx_L1_error)
+        __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 90, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_11);
-        __Pyx_GIVEREF(__pyx_t_15);
-        PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_15);
+        __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 90, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_9);
+        __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_jorb); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 90, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_GIVEREF(__pyx_t_11);
+        PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_11);
+        __Pyx_GIVEREF(__pyx_t_9);
+        PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_9);
         __Pyx_GIVEREF(__pyx_t_10);
-        PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_10);
-        __Pyx_GIVEREF(__pyx_t_3);
-        PyTuple_SET_ITEM(__pyx_t_11, 2, __pyx_t_3);
-        __pyx_t_15 = 0;
+        PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_10);
+        __pyx_t_11 = 0;
+        __pyx_t_9 = 0;
         __pyx_t_10 = 0;
-        __pyx_t_3 = 0;
-        __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_9, __pyx_t_11); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 85, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_v_current_ci_coeff, __pyx_t_2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 90, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_10);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_t_10); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         (((__pyx_v_ci_coef_new[__pyx_v_ist])[__pyx_v_iorb])[__pyx_v_jorb]) = __pyx_t_1;
       }
     }
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":88
+  /* "src/qm/cioverlap/cioverlap.pyx":93
  * 
  *     # Calculate TDNAC term for CIoverlap
  *     TD_NAC(istep, nst, nbasis, norb, nocc, nvirt, dt, orb_ini, orb_final, nacme, \             # <<<<<<<<<<<<<<
@@ -2065,23 +2117,23 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   TD_NAC(__pyx_v_istep, __pyx_v_nst, __pyx_v_nbasis, __pyx_v_norb, __pyx_v_nocc, __pyx_v_nvirt, __pyx_v_dt, __pyx_v_orb_ini, __pyx_v_orb_final, __pyx_v_nacme, __pyx_v_ao_overlap, __pyx_v_mo_coef_old, __pyx_v_mo_coef_new, __pyx_v_ci_coef_old, __pyx_v_ci_coef_new);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":92
+  /* "src/qm/cioverlap/cioverlap.pyx":97
  * 
  *     # Assign NACME variables from C to python
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         for jst in range(nst):
- *              molecule.nacme[ist, jst] = nacme[ist][jst]
+ *             nacme_out[ist, jst] = nacme[ist][jst]
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":93
+    /* "src/qm/cioverlap/cioverlap.pyx":98
  *     # Assign NACME variables from C to python
  *     for ist in range(nst):
  *         for jst in range(nst):             # <<<<<<<<<<<<<<
- *              molecule.nacme[ist, jst] = nacme[ist][jst]
+ *             nacme_out[ist, jst] = nacme[ist][jst]
  * 
  */
     __pyx_t_6 = __pyx_v_nst;
@@ -2089,163 +2141,34 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_jst = __pyx_t_8;
 
-      /* "src/qm/cioverlap/cioverlap.pyx":94
+      /* "src/qm/cioverlap/cioverlap.pyx":99
  *     for ist in range(nst):
  *         for jst in range(nst):
- *              molecule.nacme[ist, jst] = nacme[ist][jst]             # <<<<<<<<<<<<<<
- * 
- *     for iorb in range(norb):
- */
-      __pyx_t_3 = PyFloat_FromDouble(((__pyx_v_nacme[__pyx_v_ist])[__pyx_v_jst])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_molecule, __pyx_n_s_nacme); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_jst); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_15 = PyTuple_New(2); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __Pyx_GIVEREF(__pyx_t_9);
-      PyTuple_SET_ITEM(__pyx_t_15, 0, __pyx_t_9);
-      __Pyx_GIVEREF(__pyx_t_10);
-      PyTuple_SET_ITEM(__pyx_t_15, 1, __pyx_t_10);
-      __pyx_t_9 = 0;
-      __pyx_t_10 = 0;
-      if (unlikely(PyObject_SetItem(__pyx_t_11, __pyx_t_15, __pyx_t_3) < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    }
-  }
-
-  /* "src/qm/cioverlap/cioverlap.pyx":96
- *              molecule.nacme[ist, jst] = nacme[ist][jst]
- * 
- *     for iorb in range(norb):             # <<<<<<<<<<<<<<
- *         for ibasis in range(nbasis):
- *             qm.mo_coef_old[iorb, ibasis] = mo_coef_new[iorb][ibasis]
- */
-  __pyx_t_2 = __pyx_v_norb;
-  __pyx_t_4 = __pyx_t_2;
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_iorb = __pyx_t_5;
-
-    /* "src/qm/cioverlap/cioverlap.pyx":97
- * 
- *     for iorb in range(norb):
- *         for ibasis in range(nbasis):             # <<<<<<<<<<<<<<
- *             qm.mo_coef_old[iorb, ibasis] = mo_coef_new[iorb][ibasis]
- * 
- */
-    __pyx_t_6 = __pyx_v_nbasis;
-    __pyx_t_7 = __pyx_t_6;
-    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-      __pyx_v_ibasis = __pyx_t_8;
-
-      /* "src/qm/cioverlap/cioverlap.pyx":98
- *     for iorb in range(norb):
- *         for ibasis in range(nbasis):
- *             qm.mo_coef_old[iorb, ibasis] = mo_coef_new[iorb][ibasis]             # <<<<<<<<<<<<<<
- * 
- *     for ist in range(nst):
- */
-      __pyx_t_3 = PyFloat_FromDouble(((__pyx_v_mo_coef_new[__pyx_v_iorb])[__pyx_v_ibasis])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_mo_coef_old); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 98, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_15);
-      __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 98, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_ibasis); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 98, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_9 = PyTuple_New(2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 98, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_GIVEREF(__pyx_t_11);
-      PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_11);
-      __Pyx_GIVEREF(__pyx_t_10);
-      PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_10);
-      __pyx_t_11 = 0;
-      __pyx_t_10 = 0;
-      if (unlikely(PyObject_SetItem(__pyx_t_15, __pyx_t_9, __pyx_t_3) < 0)) __PYX_ERR(0, 98, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    }
-  }
-
-  /* "src/qm/cioverlap/cioverlap.pyx":100
- *             qm.mo_coef_old[iorb, ibasis] = mo_coef_new[iorb][ibasis]
- * 
- *     for ist in range(nst):             # <<<<<<<<<<<<<<
- *         for iorb in range(nocc):
- *             for jorb in range(nvirt):
- */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
-  for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
-    __pyx_v_ist = __pyx_t_5;
-
-    /* "src/qm/cioverlap/cioverlap.pyx":101
- * 
- *     for ist in range(nst):
- *         for iorb in range(nocc):             # <<<<<<<<<<<<<<
- *             for jorb in range(nvirt):
- *                 qm.ci_coef_old[ist, iorb, jorb] = ci_coef_new[ist][iorb][jorb]
- */
-    __pyx_t_6 = __pyx_v_nocc;
-    __pyx_t_7 = __pyx_t_6;
-    for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
-      __pyx_v_iorb = __pyx_t_8;
-
-      /* "src/qm/cioverlap/cioverlap.pyx":102
- *     for ist in range(nst):
- *         for iorb in range(nocc):
- *             for jorb in range(nvirt):             # <<<<<<<<<<<<<<
- *                 qm.ci_coef_old[ist, iorb, jorb] = ci_coef_new[ist][iorb][jorb]
- * 
- */
-      __pyx_t_12 = __pyx_v_nvirt;
-      __pyx_t_13 = __pyx_t_12;
-      for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
-        __pyx_v_jorb = __pyx_t_14;
-
-        /* "src/qm/cioverlap/cioverlap.pyx":103
- *         for iorb in range(nocc):
- *             for jorb in range(nvirt):
- *                 qm.ci_coef_old[ist, iorb, jorb] = ci_coef_new[ist][iorb][jorb]             # <<<<<<<<<<<<<<
+ *             nacme_out[ist, jst] = nacme[ist][jst]             # <<<<<<<<<<<<<<
  * 
  *     # Deallocate NACME variables
  */
-        __pyx_t_3 = PyFloat_FromDouble((((__pyx_v_ci_coef_new[__pyx_v_ist])[__pyx_v_iorb])[__pyx_v_jorb])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_qm, __pyx_n_s_ci_coef_old); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_15 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_15);
-        __pyx_t_10 = __Pyx_PyInt_From_int(__pyx_v_iorb); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_11 = __Pyx_PyInt_From_int(__pyx_v_jorb); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_11);
-        __pyx_t_16 = PyTuple_New(3); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_16);
-        __Pyx_GIVEREF(__pyx_t_15);
-        PyTuple_SET_ITEM(__pyx_t_16, 0, __pyx_t_15);
-        __Pyx_GIVEREF(__pyx_t_10);
-        PyTuple_SET_ITEM(__pyx_t_16, 1, __pyx_t_10);
-        __Pyx_GIVEREF(__pyx_t_11);
-        PyTuple_SET_ITEM(__pyx_t_16, 2, __pyx_t_11);
-        __pyx_t_15 = 0;
-        __pyx_t_10 = 0;
-        __pyx_t_11 = 0;
-        if (unlikely(PyObject_SetItem(__pyx_t_9, __pyx_t_16, __pyx_t_3) < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      }
+      __pyx_t_10 = PyFloat_FromDouble(((__pyx_v_nacme[__pyx_v_ist])[__pyx_v_jst])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_ist); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_jst); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_9);
+      __pyx_t_11 = PyTuple_New(2); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
+      __Pyx_GIVEREF(__pyx_t_2);
+      PyTuple_SET_ITEM(__pyx_t_11, 0, __pyx_t_2);
+      __Pyx_GIVEREF(__pyx_t_9);
+      PyTuple_SET_ITEM(__pyx_t_11, 1, __pyx_t_9);
+      __pyx_t_2 = 0;
+      __pyx_t_9 = 0;
+      if (unlikely(PyObject_SetItem(__pyx_v_nacme_out, __pyx_t_11, __pyx_t_10) < 0)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     }
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":106
+  /* "src/qm/cioverlap/cioverlap.pyx":102
  * 
  *     # Deallocate NACME variables
  *     PyMem_Free(orb_ini)             # <<<<<<<<<<<<<<
@@ -2254,7 +2177,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   PyMem_Free(__pyx_v_orb_ini);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":107
+  /* "src/qm/cioverlap/cioverlap.pyx":103
  *     # Deallocate NACME variables
  *     PyMem_Free(orb_ini)
  *     PyMem_Free(orb_final)             # <<<<<<<<<<<<<<
@@ -2263,50 +2186,50 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   PyMem_Free(__pyx_v_orb_final);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":109
+  /* "src/qm/cioverlap/cioverlap.pyx":105
  *     PyMem_Free(orb_final)
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         PyMem_Free(nacme[ist])
- * 
+ *     PyMem_Free(nacme)
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":110
+    /* "src/qm/cioverlap/cioverlap.pyx":106
  * 
  *     for ist in range(nst):
  *         PyMem_Free(nacme[ist])             # <<<<<<<<<<<<<<
- * 
  *     PyMem_Free(nacme)
+ * 
  */
     PyMem_Free((__pyx_v_nacme[__pyx_v_ist]));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":112
+  /* "src/qm/cioverlap/cioverlap.pyx":107
+ *     for ist in range(nst):
  *         PyMem_Free(nacme[ist])
- * 
  *     PyMem_Free(nacme)             # <<<<<<<<<<<<<<
  * 
  *     for ibasis in range(nbasis):
  */
   PyMem_Free(__pyx_v_nacme);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":114
+  /* "src/qm/cioverlap/cioverlap.pyx":109
  *     PyMem_Free(nacme)
  * 
  *     for ibasis in range(nbasis):             # <<<<<<<<<<<<<<
  *         PyMem_Free(ao_overlap[ibasis])
  * 
  */
-  __pyx_t_2 = __pyx_v_nbasis;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nbasis;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ibasis = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":115
+    /* "src/qm/cioverlap/cioverlap.pyx":110
  * 
  *     for ibasis in range(nbasis):
  *         PyMem_Free(ao_overlap[ibasis])             # <<<<<<<<<<<<<<
@@ -2316,19 +2239,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     PyMem_Free((__pyx_v_ao_overlap[__pyx_v_ibasis]));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":117
+  /* "src/qm/cioverlap/cioverlap.pyx":112
  *         PyMem_Free(ao_overlap[ibasis])
  * 
  *     for iorb in range(norb):             # <<<<<<<<<<<<<<
  *         PyMem_Free(mo_coef_old[iorb])
  *         PyMem_Free(mo_coef_new[iorb])
  */
-  __pyx_t_2 = __pyx_v_norb;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_norb;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_iorb = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":118
+    /* "src/qm/cioverlap/cioverlap.pyx":113
  * 
  *     for iorb in range(norb):
  *         PyMem_Free(mo_coef_old[iorb])             # <<<<<<<<<<<<<<
@@ -2337,7 +2260,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
     PyMem_Free((__pyx_v_mo_coef_old[__pyx_v_iorb]));
 
-    /* "src/qm/cioverlap/cioverlap.pyx":119
+    /* "src/qm/cioverlap/cioverlap.pyx":114
  *     for iorb in range(norb):
  *         PyMem_Free(mo_coef_old[iorb])
  *         PyMem_Free(mo_coef_new[iorb])             # <<<<<<<<<<<<<<
@@ -2347,7 +2270,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     PyMem_Free((__pyx_v_mo_coef_new[__pyx_v_iorb]));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":121
+  /* "src/qm/cioverlap/cioverlap.pyx":116
  *         PyMem_Free(mo_coef_new[iorb])
  * 
  *     PyMem_Free(ao_overlap)             # <<<<<<<<<<<<<<
@@ -2356,7 +2279,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   PyMem_Free(__pyx_v_ao_overlap);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":122
+  /* "src/qm/cioverlap/cioverlap.pyx":117
  * 
  *     PyMem_Free(ao_overlap)
  *     PyMem_Free(mo_coef_old)             # <<<<<<<<<<<<<<
@@ -2365,7 +2288,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   PyMem_Free(__pyx_v_mo_coef_old);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":123
+  /* "src/qm/cioverlap/cioverlap.pyx":118
  *     PyMem_Free(ao_overlap)
  *     PyMem_Free(mo_coef_old)
  *     PyMem_Free(mo_coef_new)             # <<<<<<<<<<<<<<
@@ -2374,19 +2297,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   PyMem_Free(__pyx_v_mo_coef_new);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":125
+  /* "src/qm/cioverlap/cioverlap.pyx":120
  *     PyMem_Free(mo_coef_new)
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         for iorb in range(nocc):
  *             PyMem_Free(ci_coef_old[ist][iorb])
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":126
+    /* "src/qm/cioverlap/cioverlap.pyx":121
  * 
  *     for ist in range(nst):
  *         for iorb in range(nocc):             # <<<<<<<<<<<<<<
@@ -2398,7 +2321,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
       __pyx_v_iorb = __pyx_t_8;
 
-      /* "src/qm/cioverlap/cioverlap.pyx":127
+      /* "src/qm/cioverlap/cioverlap.pyx":122
  *     for ist in range(nst):
  *         for iorb in range(nocc):
  *             PyMem_Free(ci_coef_old[ist][iorb])             # <<<<<<<<<<<<<<
@@ -2407,7 +2330,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
       PyMem_Free(((__pyx_v_ci_coef_old[__pyx_v_ist])[__pyx_v_iorb]));
 
-      /* "src/qm/cioverlap/cioverlap.pyx":128
+      /* "src/qm/cioverlap/cioverlap.pyx":123
  *         for iorb in range(nocc):
  *             PyMem_Free(ci_coef_old[ist][iorb])
  *             PyMem_Free(ci_coef_new[ist][iorb])             # <<<<<<<<<<<<<<
@@ -2418,19 +2341,19 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     }
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":130
+  /* "src/qm/cioverlap/cioverlap.pyx":125
  *             PyMem_Free(ci_coef_new[ist][iorb])
  * 
  *     for ist in range(nst):             # <<<<<<<<<<<<<<
  *         PyMem_Free(ci_coef_old[ist])
  *         PyMem_Free(ci_coef_new[ist])
  */
-  __pyx_t_2 = __pyx_v_nst;
-  __pyx_t_4 = __pyx_t_2;
+  __pyx_t_3 = __pyx_v_nst;
+  __pyx_t_4 = __pyx_t_3;
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_ist = __pyx_t_5;
 
-    /* "src/qm/cioverlap/cioverlap.pyx":131
+    /* "src/qm/cioverlap/cioverlap.pyx":126
  * 
  *     for ist in range(nst):
  *         PyMem_Free(ci_coef_old[ist])             # <<<<<<<<<<<<<<
@@ -2439,7 +2362,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
     PyMem_Free((__pyx_v_ci_coef_old[__pyx_v_ist]));
 
-    /* "src/qm/cioverlap/cioverlap.pyx":132
+    /* "src/qm/cioverlap/cioverlap.pyx":127
  *     for ist in range(nst):
  *         PyMem_Free(ci_coef_old[ist])
  *         PyMem_Free(ci_coef_new[ist])             # <<<<<<<<<<<<<<
@@ -2449,7 +2372,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
     PyMem_Free((__pyx_v_ci_coef_new[__pyx_v_ist]));
   }
 
-  /* "src/qm/cioverlap/cioverlap.pyx":134
+  /* "src/qm/cioverlap/cioverlap.pyx":129
  *         PyMem_Free(ci_coef_new[ist])
  * 
  *     PyMem_Free(ci_coef_old)             # <<<<<<<<<<<<<<
@@ -2458,11 +2381,10 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
  */
   PyMem_Free(__pyx_v_ci_coef_old);
 
-  /* "src/qm/cioverlap/cioverlap.pyx":135
+  /* "src/qm/cioverlap/cioverlap.pyx":130
  * 
  *     PyMem_Free(ci_coef_old)
  *     PyMem_Free(ci_coef_new)             # <<<<<<<<<<<<<<
- * 
  * 
  */
   PyMem_Free(__pyx_v_ci_coef_new);
@@ -2470,7 +2392,7 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
   /* "src/qm/cioverlap/cioverlap.pyx":9
  *         double **mo_coef_old, double **mo_coef_new, double ***ci_coef_old, double ***ci_coef_new)
  * 
- * def wf_overlap(qm, molecule, istep_py, dt_py):             # <<<<<<<<<<<<<<
+ * def wf_overlap(program_state, dt_py, nacme_out):             # <<<<<<<<<<<<<<
  *     cdef:
  *         int *orb_ini
  */
@@ -2479,15 +2401,17 @@ static PyObject *__pyx_pf_6unixmd_2qm_9cioverlap_wf_overlap(CYTHON_UNUSED PyObje
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
   __Pyx_XDECREF(__pyx_t_11);
-  __Pyx_XDECREF(__pyx_t_15);
-  __Pyx_XDECREF(__pyx_t_16);
   __Pyx_AddTraceback("unixmd.qm.cioverlap.wf_overlap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_previous_mo_coeff);
+  __Pyx_XDECREF(__pyx_v_current_mo_coeff);
+  __Pyx_XDECREF(__pyx_v_previous_ci_coeff);
+  __Pyx_XDECREF(__pyx_v_current_ci_coeff);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -2540,33 +2464,46 @@ static struct PyModuleDef __pyx_moduledef = {
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ao_overlap, __pyx_k_ao_overlap, sizeof(__pyx_k_ao_overlap), 0, 0, 1, 1},
+  {&__pyx_n_s_atomic_orbital_overlap, __pyx_k_atomic_orbital_overlap, sizeof(__pyx_k_atomic_orbital_overlap), 0, 0, 1, 1},
   {&__pyx_n_s_ci_coef_new, __pyx_k_ci_coef_new, sizeof(__pyx_k_ci_coef_new), 0, 0, 1, 1},
   {&__pyx_n_s_ci_coef_old, __pyx_k_ci_coef_old, sizeof(__pyx_k_ci_coef_old), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
+  {&__pyx_n_s_current_ci_coeff, __pyx_k_current_ci_coeff, sizeof(__pyx_k_current_ci_coeff), 0, 0, 1, 1},
+  {&__pyx_n_s_current_ci_coefficients, __pyx_k_current_ci_coefficients, sizeof(__pyx_k_current_ci_coefficients), 0, 0, 1, 1},
+  {&__pyx_n_s_current_mo_coeff, __pyx_k_current_mo_coeff, sizeof(__pyx_k_current_mo_coeff), 0, 0, 1, 1},
+  {&__pyx_n_s_current_mo_coefficients, __pyx_k_current_mo_coefficients, sizeof(__pyx_k_current_mo_coefficients), 0, 0, 1, 1},
+  {&__pyx_n_s_current_step, __pyx_k_current_step, sizeof(__pyx_k_current_step), 0, 0, 1, 1},
   {&__pyx_n_s_dt, __pyx_k_dt, sizeof(__pyx_k_dt), 0, 0, 1, 1},
   {&__pyx_n_s_dt_py, __pyx_k_dt_py, sizeof(__pyx_k_dt_py), 0, 0, 1, 1},
   {&__pyx_n_s_ibasis, __pyx_k_ibasis, sizeof(__pyx_k_ibasis), 0, 0, 1, 1},
   {&__pyx_n_s_iorb, __pyx_k_iorb, sizeof(__pyx_k_iorb), 0, 0, 1, 1},
   {&__pyx_n_s_ist, __pyx_k_ist, sizeof(__pyx_k_ist), 0, 0, 1, 1},
   {&__pyx_n_s_istep, __pyx_k_istep, sizeof(__pyx_k_istep), 0, 0, 1, 1},
-  {&__pyx_n_s_istep_py, __pyx_k_istep_py, sizeof(__pyx_k_istep_py), 0, 0, 1, 1},
   {&__pyx_n_s_jbasis, __pyx_k_jbasis, sizeof(__pyx_k_jbasis), 0, 0, 1, 1},
   {&__pyx_n_s_jorb, __pyx_k_jorb, sizeof(__pyx_k_jorb), 0, 0, 1, 1},
   {&__pyx_n_s_jst, __pyx_k_jst, sizeof(__pyx_k_jst), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_mo_coef_new, __pyx_k_mo_coef_new, sizeof(__pyx_k_mo_coef_new), 0, 0, 1, 1},
   {&__pyx_n_s_mo_coef_old, __pyx_k_mo_coef_old, sizeof(__pyx_k_mo_coef_old), 0, 0, 1, 1},
-  {&__pyx_n_s_molecule, __pyx_k_molecule, sizeof(__pyx_k_molecule), 0, 0, 1, 1},
   {&__pyx_n_s_nacme, __pyx_k_nacme, sizeof(__pyx_k_nacme), 0, 0, 1, 1},
+  {&__pyx_n_s_nacme_out, __pyx_k_nacme_out, sizeof(__pyx_k_nacme_out), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_nbasis, __pyx_k_nbasis, sizeof(__pyx_k_nbasis), 0, 0, 1, 1},
   {&__pyx_n_s_nocc, __pyx_k_nocc, sizeof(__pyx_k_nocc), 0, 0, 1, 1},
   {&__pyx_n_s_norb, __pyx_k_norb, sizeof(__pyx_k_norb), 0, 0, 1, 1},
   {&__pyx_n_s_nst, __pyx_k_nst, sizeof(__pyx_k_nst), 0, 0, 1, 1},
+  {&__pyx_n_s_number_of_alpha_occupied, __pyx_k_number_of_alpha_occupied, sizeof(__pyx_k_number_of_alpha_occupied), 0, 0, 1, 1},
+  {&__pyx_n_s_number_of_alpha_virtual, __pyx_k_number_of_alpha_virtual, sizeof(__pyx_k_number_of_alpha_virtual), 0, 0, 1, 1},
+  {&__pyx_n_s_number_of_basis_functions, __pyx_k_number_of_basis_functions, sizeof(__pyx_k_number_of_basis_functions), 0, 0, 1, 1},
+  {&__pyx_n_s_number_of_electronic_states, __pyx_k_number_of_electronic_states, sizeof(__pyx_k_number_of_electronic_states), 0, 0, 1, 1},
   {&__pyx_n_s_nvirt, __pyx_k_nvirt, sizeof(__pyx_k_nvirt), 0, 0, 1, 1},
   {&__pyx_n_s_orb_final, __pyx_k_orb_final, sizeof(__pyx_k_orb_final), 0, 0, 1, 1},
   {&__pyx_n_s_orb_ini, __pyx_k_orb_ini, sizeof(__pyx_k_orb_ini), 0, 0, 1, 1},
-  {&__pyx_n_s_qm, __pyx_k_qm, sizeof(__pyx_k_qm), 0, 0, 1, 1},
+  {&__pyx_n_s_previous_ci_coeff, __pyx_k_previous_ci_coeff, sizeof(__pyx_k_previous_ci_coeff), 0, 0, 1, 1},
+  {&__pyx_n_s_previous_ci_coefficients, __pyx_k_previous_ci_coefficients, sizeof(__pyx_k_previous_ci_coefficients), 0, 0, 1, 1},
+  {&__pyx_n_s_previous_mo_coeff, __pyx_k_previous_mo_coeff, sizeof(__pyx_k_previous_mo_coeff), 0, 0, 1, 1},
+  {&__pyx_n_s_previous_mo_coefficients, __pyx_k_previous_mo_coefficients, sizeof(__pyx_k_previous_mo_coefficients), 0, 0, 1, 1},
+  {&__pyx_n_s_program_state, __pyx_k_program_state, sizeof(__pyx_k_program_state), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_kp_s_src_qm_cioverlap_cioverlap_pyx, __pyx_k_src_qm_cioverlap_cioverlap_pyx, sizeof(__pyx_k_src_qm_cioverlap_cioverlap_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
@@ -2575,7 +2512,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 47, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2588,14 +2525,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "src/qm/cioverlap/cioverlap.pyx":9
  *         double **mo_coef_old, double **mo_coef_new, double ***ci_coef_old, double ***ci_coef_new)
  * 
- * def wf_overlap(qm, molecule, istep_py, dt_py):             # <<<<<<<<<<<<<<
+ * def wf_overlap(program_state, dt_py, nacme_out):             # <<<<<<<<<<<<<<
  *     cdef:
  *         int *orb_ini
  */
-  __pyx_tuple_ = PyTuple_Pack(25, __pyx_n_s_qm, __pyx_n_s_molecule, __pyx_n_s_istep_py, __pyx_n_s_dt_py, __pyx_n_s_orb_ini, __pyx_n_s_orb_final, __pyx_n_s_nacme, __pyx_n_s_ao_overlap, __pyx_n_s_mo_coef_old, __pyx_n_s_mo_coef_new, __pyx_n_s_ci_coef_old, __pyx_n_s_ci_coef_new, __pyx_n_s_istep, __pyx_n_s_ist, __pyx_n_s_nst, __pyx_n_s_ibasis, __pyx_n_s_jbasis, __pyx_n_s_iorb, __pyx_n_s_jorb, __pyx_n_s_nbasis, __pyx_n_s_norb, __pyx_n_s_nocc, __pyx_n_s_nvirt, __pyx_n_s_dt, __pyx_n_s_jst); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(28, __pyx_n_s_program_state, __pyx_n_s_dt_py, __pyx_n_s_nacme_out, __pyx_n_s_orb_ini, __pyx_n_s_orb_final, __pyx_n_s_nacme, __pyx_n_s_ao_overlap, __pyx_n_s_mo_coef_old, __pyx_n_s_mo_coef_new, __pyx_n_s_ci_coef_old, __pyx_n_s_ci_coef_new, __pyx_n_s_istep, __pyx_n_s_ist, __pyx_n_s_nst, __pyx_n_s_ibasis, __pyx_n_s_jbasis, __pyx_n_s_iorb, __pyx_n_s_jorb, __pyx_n_s_nbasis, __pyx_n_s_norb, __pyx_n_s_nocc, __pyx_n_s_nvirt, __pyx_n_s_dt, __pyx_n_s_previous_mo_coeff, __pyx_n_s_current_mo_coeff, __pyx_n_s_previous_ci_coeff, __pyx_n_s_current_ci_coeff, __pyx_n_s_jst); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(4, 0, 25, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_qm_cioverlap_cioverlap_pyx, __pyx_n_s_wf_overlap, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(3, 0, 28, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_qm_cioverlap_cioverlap_pyx, __pyx_n_s_wf_overlap, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2877,7 +2814,7 @@ if (!__Pyx_RefNanny) {
   /* "src/qm/cioverlap/cioverlap.pyx":9
  *         double **mo_coef_old, double **mo_coef_new, double ***ci_coef_old, double ***ci_coef_new)
  * 
- * def wf_overlap(qm, molecule, istep_py, dt_py):             # <<<<<<<<<<<<<<
+ * def wf_overlap(program_state, dt_py, nacme_out):             # <<<<<<<<<<<<<<
  *     cdef:
  *         int *orb_ini
  */

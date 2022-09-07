@@ -6,23 +6,7 @@ cdef extern from "tdnac.c":
         int *orb_ini, int *orb_final, double **nacme, double **ao_overlap, \
         double **mo_coef_old, double **mo_coef_new, double ***ci_coef_old, double ***ci_coef_new)
 
-def wf_overlap(
-    num_states,
-    num_basis_funcs,
-    num_occupied,
-    num_virtual,
-    atomic_orbital_overlap,
-    previous_mo_coeff,
-    current_mo_coeff,
-    previous_nacme,
-    previous_ci_coeff,
-    current_ci_coeff,
-    istep_py,
-    dt_py,
-    initial_orb,
-    final_orb,
-    nacme_out,
-):
+def wf_overlap(program_state, dt_py, nacme_out):
     cdef:
         int *orb_ini
         int *orb_final
@@ -38,12 +22,17 @@ def wf_overlap(
 
     # Assign size variables
     dt = dt_py
-    istep = istep_py
-    nst = num_states
-    nbasis = num_basis_funcs
-    nocc = num_occupied
-    nvirt = num_virtual
+    istep = program_state.current_step
+    nst = program_state.number_of_electronic_states
+    nbasis = program_state.number_of_basis_functions
+    nocc = program_state.number_of_alpha_occupied
+    nvirt = program_state.number_of_alpha_virtual
     norb = nvirt + nocc
+
+    previous_mo_coeff = program_state.previous_mo_coefficients
+    current_mo_coeff = program_state.current_mo_coefficients
+    previous_ci_coeff = program_state.previous_ci_coefficients
+    current_ci_coeff = program_state.current_ci_coefficients
 
     # Allocate NACME variables
     orb_ini = <int*> PyMem_Malloc(1 * sizeof(int))
@@ -78,8 +67,8 @@ def wf_overlap(
             ci_coef_new[ist][iorb] = <double*> PyMem_Malloc(nvirt * sizeof(double))
 
     # Assign NACME variables from python to C
-    orb_ini[0] = initial_orb[0]
-    orb_final[0] = final_orb[0]
+    orb_ini[0] = program_state.orb_ini[0]
+    orb_final[0] = program_state.orb_final[0]
 
     for ist in range(nst):
         for jst in range(nst):
@@ -87,7 +76,7 @@ def wf_overlap(
 
     for ibasis in range(nbasis):
         for jbasis in range(nbasis):
-            ao_overlap[ibasis][jbasis] = atomic_orbital_overlap[ibasis, jbasis]
+            ao_overlap[ibasis][jbasis] = program_state.atomic_orbital_overlap[ibasis, jbasis]
     
     for iorb in range(norb):
         for ibasis in range(nbasis):

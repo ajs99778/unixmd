@@ -52,6 +52,17 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
 
     calc_MO_over(nbasis, norb, mo_overlap, permut_mat, ao_overlap, mo_coef_old, mo_coef_new);
 
+    if(debug == 2){
+        printf("permut_mat \n");
+        for(iorb = 0; iorb < norb; iorb++){
+            for(jorb = 0; jorb < norb; jorb++){
+                printf("%15.8f ", permut_mat[iorb][jorb]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+    }
+
     if(debug == 1){
         // Print mo_overlap
         printf("mo_overlap \n");

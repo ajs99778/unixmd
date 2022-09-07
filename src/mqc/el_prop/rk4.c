@@ -52,6 +52,11 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
     frac = 1.0 / (double)nesteps;
     edt = dt * frac;
 
+/*
+    for(ist = 0; ist < nst; ist++){
+        printf("state: %i energy: %.5f old energy: %.5f\n", ist, energy[ist], energy_old[ist]);
+    }
+*/
     for(iestep = 0; iestep < nesteps; iestep++){
 
         // Interpolate energy and NACME terms between time t and t + dt
@@ -158,7 +163,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
     double **dv = malloc(nst * sizeof(double*));
 
     int ist, jst, iestep;
-    double frac, edt;
+    double frac, edt, norm;
 
     for(ist = 0; ist < nst; ist++){
         k1[ist] = malloc(nst * sizeof(double complex));
@@ -174,6 +179,12 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
 
     frac = 1.0 / (double)nesteps;
     edt = dt * frac;
+
+/*
+    for(ist = 0; ist < nst; ist++){
+        printf("state: %i energy: %.5f old energy: %.5f\n", ist, energy[ist], energy_old[ist]);
+    }
+*/
 
     for(iestep = 0; iestep < nesteps; iestep++){
 
