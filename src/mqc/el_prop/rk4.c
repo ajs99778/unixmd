@@ -163,7 +163,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
     double **dv = malloc(nst * sizeof(double*));
 
     int ist, jst, iestep;
-    double frac, edt, norm;
+    double frac, edt;
 
     for(ist = 0; ist < nst; ist++){
         k1[ist] = malloc(nst * sizeof(double complex));

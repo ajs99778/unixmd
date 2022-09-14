@@ -21,8 +21,8 @@ import numpy as np
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
 
-sourcefile1 = ["./src/mqc/el_prop/el_propagator.pyx", "./src/mqc/el_prop/rk4.cpp"]
-sourcefile2 = ["./src/qm/cioverlap/cioverlap.pyx", "./src/qm/cioverlap/tdnac.cpp"]
+sourcefile1 = ["./src/mqc/el_prop/el_propagator.pyx", "./src/mqc/el_prop/rk4.c"]
+sourcefile2 = ["./src/qm/cioverlap/cioverlap.pyx", "./src/qm/cioverlap/tdnac.c"]
 extensions = [
     Extension(
         name="unixmd.mqc.el_propagator",
