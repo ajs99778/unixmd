@@ -21,15 +21,21 @@ import numpy as np
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
 
-sourcefile1 = ["./src/mqc/el_prop/el_propagator.pyx", "./src/mqc/el_prop/rk4.c"]
-sourcefile2 = ["./src/qm/cioverlap/cioverlap.pyx", "./src/qm/cioverlap/tdnac.c"]
-sourcefile3 = ["./src/mqc/el_prop/el_propagator_xf.pyx", "./src/mqc/el_prop/rk4_xf.c"]
-sourcefile4 = ["./src/mqc/el_prop/el_propagator_ct.pyx", "./src/mqc/el_prop/rk4_ct.c"]
+sourcefile1 = ["./src/mqc/el_prop/el_propagator.pyx", "./src/mqc/el_prop/rk4.cpp"]
+sourcefile2 = ["./src/qm/cioverlap/cioverlap.pyx", "./src/qm/cioverlap/tdnac.cpp"]
 extensions = [
-    Extension(name="unixmd.mqc.el_propagator", sources=sourcefile1, include_dirs=[np.get_include()]),
-    Extension(name="unixmd.qm.cioverlap", sources=sourcefile2, include_dirs=[np.get_include()]),
-    Extension(name="unixmd.mqc.el_propagator_xf", sources=sourcefile3, include_dirs=[np.get_include()]),
-    Extension(name="unixmd.mqc.el_propagator_ct", sources=sourcefile4, include_dirs=[np.get_include()]),
+    Extension(
+        name="unixmd.mqc.el_propagator",
+        sources=sourcefile1,
+        include_dirs=[np.get_include()],
+        define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+    ),
+    Extension(
+        name="unixmd.qm.cioverlap",
+        sources=sourcefile2,
+        include_dirs=[np.get_include()],
+        define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+    ),
 ]
 
 setup(
@@ -51,7 +57,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    ext_modules=cythonize(extensions),
+    ext_modules=cythonize(extensions, language="c"),
     version="0.1a1",  # Required
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
@@ -96,7 +102,7 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        "Development Status :: 1 - Planning",
+        "Development Status :: 3 - Alpha",
         # Indicate who your project is intended for
         "Intended Audience :: Science/Research",
         "Topic :: Scientific/Engineering :: Chemistry",
@@ -122,7 +128,6 @@ setup(
         "unixmd": "src",
         "unixmd.mqc": "src/mqc",
         "unixmd.qm": "src/qm",
-        "unixmd.qm.gaussian": "src/qm/gaussian",
     },  # Optional
     # You can just specify package directories manually here if your project is
     # simple. Or you can use find_packages().
@@ -137,7 +142,6 @@ setup(
         "unixmd",
         "unixmd.mqc",
         "unixmd.qm",
-        "unixmd.qm.gaussian",
     ],  # Required
     include_package_data=True,
     package_data={
