@@ -48,6 +48,9 @@ def wf_overlap(program_state, dt_py, nacme_out):
     previous_ci_coeff = program_state.previous_ci_coefficients
     current_ci_coeff = program_state.current_ci_coefficients
 
+    if program_state.intersystem_crossing:
+        nst = 1 + int((nst - 1) / 2)
+    
     # Allocate NACME variables
     orb_ini = <int*> PyMem_Malloc(1 * sizeof(int))
     orb_final = <int*> PyMem_Malloc(1 * sizeof(int))

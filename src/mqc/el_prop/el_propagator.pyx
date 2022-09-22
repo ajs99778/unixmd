@@ -6,8 +6,8 @@ cimport numpy as np
 
 cdef extern from "rk4.c":
     void rk4(int nst, int nesteps, double dt, char *elec_object, double *energy, \
-        double *energy_old, double **nacme, double **nacme_old, double complex *coef, \
-        double complex **rho)
+        double *energy_old, double **nacme, double **nacme_old, double **socme, \
+        double **socme_old, double complex *coef, double complex **rho)
 def el_run(
     program_state,
     elec_object,
@@ -18,6 +18,8 @@ def el_run(
         double *energy_old
         double **nacme
         double **nacme_old
+        double **socme
+        double **socme_old
         double complex *coef
         double complex **rho
 
@@ -37,9 +39,14 @@ def el_run(
     nacme = <double**> PyMem_Malloc(nst * sizeof(double*))
     nacme_old = <double**> PyMem_Malloc(nst * sizeof(double*))
 
+    socme = <double**> PyMem_Malloc(nst * sizeof(double*))
+    socme_old = <double**> PyMem_Malloc(nst * sizeof(double*))
+
     for ist in range(nst):
         nacme[ist] = <double*> PyMem_Malloc(nst * sizeof(double))
         nacme_old[ist] = <double*> PyMem_Malloc(nst * sizeof(double))
+        socme[ist] = <double*> PyMem_Malloc(nst * sizeof(double))
+        socme_old[ist] = <double*> PyMem_Malloc(nst * sizeof(double))
 
     # Assign variables from python to C
     for ist in range(nst):
@@ -50,6 +57,12 @@ def el_run(
         for jst in range(nst):
             nacme[ist][jst] = program_state.nacmes[-1][ist, jst]
             nacme_old[ist][jst] = program_state.nacmes[-2][ist, jst]
+            if program_state.intersystem_crossing:
+                socme[ist][jst] = program_state.socmes[-1][ist, jst]
+                socme_old[ist][jst] = program_state.socmes[-2][ist, jst]
+            else:
+                socme[ist][jst] = 0.
+                socme_old[ist][jst] = 0.
 
     # Debug related
     verbosity = 1
@@ -74,7 +87,10 @@ def el_run(
     elec_object_c = py_bytes
 
     # Propagate electrons
-    rk4(nst, nesteps, dt, elec_object_c, energy, energy_old, nacme, nacme_old, coef, rho)
+    rk4(
+        nst, nesteps, dt, elec_object_c, energy, energy_old,
+        nacme, nacme_old, socme, socme_old, coef, rho
+    )
 
     # Assign variables from C to python
     if (elec_object == "coefficient"):
@@ -92,19 +108,24 @@ def el_run(
             for jst in range(nst):
                 program_state.rho[ist, jst] = rho[ist][jst]
     
+        for ist in range(nst):
+            PyMem_Free(rho[ist])
+        PyMem_Free(rho)
+    
     # Deallocate variables
     for ist in range(nst):
         PyMem_Free(nacme[ist])
         PyMem_Free(nacme_old[ist])
+        PyMem_Free(socme[ist])
+        PyMem_Free(socme_old[ist])
 
     PyMem_Free(energy)
     PyMem_Free(energy_old)
 
     PyMem_Free(nacme)
     PyMem_Free(nacme_old)
-    for ist in range(nst):
-        PyMem_Free(rho[ist])
-    PyMem_Free(rho)
+    PyMem_Free(socme)
+    PyMem_Free(socme_old)
 
     
 

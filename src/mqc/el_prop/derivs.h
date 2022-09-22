@@ -107,33 +107,39 @@ static double dot(int nst, double complex *u, double complex *v){
 }
 
 // Routine to calculate cdot contribution originated from Ehrenfest term
-static void cdot(int nst, double *e, double **dv, double complex *c, double complex *c_dot){
+static void cdot(int nst, double *e, double **dv, double **h, double complex *c, double complex *c_dot){
 
     double complex *na_term = malloc(nst * sizeof(double complex));
+    double complex *so_term = malloc(nst * sizeof(double complex));
 
     int ist, jst;
     double egs;
 
     for(ist = 0; ist < nst; ist++){
         na_term[ist] = 0.0 + 0.0 * I;
+        so_term[ist] = 0.0 + 0.0 * I;
         for(jst = 0; jst < nst; jst++){
             if(ist != jst){
                 na_term[ist] -= dv[ist][jst] * c[jst];
+                so_term[ist] += h[ist][jst] * c[jst];
             }
         }
     }
 
     egs = e[0];
     for(ist = 0; ist < nst; ist++){
-        c_dot[ist] = - 1.0 * I * c[ist] * (e[ist] - egs) + na_term[ist];
+        //           |           energy term             |     NAC      |          SOC         |
+        c_dot[ist] = - 1.0 * I * c[ist] * (e[ist] - egs) + na_term[ist] - 1.0 * I * so_term[ist];
     }
-
+    
     free(na_term);
+    free(so_term);
+
 
 }
 
 // Routine to calculate rhodot contribution originated from Ehrenfest term
-static void rhodot(int nst, double *e, double **dv, double complex **rho, double complex **rho_dot){
+static void rhodot(int nst, double *e, double **dv, double **h, double complex **rho, double complex **rho_dot){
 
     int ist, jst, kst;
 

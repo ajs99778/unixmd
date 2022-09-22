@@ -7,28 +7,29 @@
 
 // Routine for coefficient propagation scheme in rk4 propagator
 static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *energy_old,
-    double **nacme, double **nacme_old, double complex *coef);
+    double **nacme, double **nacme_old, double **socme, double **socme_old, double complex *coef);
 
 // Routine for density propagation scheme in rk4 propagator
 static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *energy_old,
-    double **nacme, double **nacme_old, double complex **rho);
+    double **nacme, double **nacme_old, double **socme, double **socme_old, double complex **rho);
 
 // Interface routine for propagation scheme in rk4 propagator
 static void rk4(int nst, int nesteps, double dt, char *elec_object, double *energy, double *energy_old,
-    double **nacme, double **nacme_old, double complex *coef, double complex **rho){
+    double **nacme, double **nacme_old, double **socme, double **socme_old, double complex *coef,
+    double complex **rho){
 
     if(strcmp(elec_object, "coefficient") == 0){
-        rk4_coef(nst, nesteps, dt, energy, energy_old, nacme, nacme_old, coef);
+        rk4_coef(nst, nesteps, dt, energy, energy_old, nacme, nacme_old, socme, socme_old, coef);
     }
     else if(strcmp(elec_object, "density") == 0){
-        rk4_rho(nst, nesteps, dt, energy, energy_old, nacme, nacme_old, rho);
+        rk4_rho(nst, nesteps, dt, energy, energy_old, nacme, nacme_old, socme, socme_old, rho);
     }
 
 }
 
 // Routine for coefficient propagation scheme in rk4 propagator
 static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *energy_old,
-    double **nacme, double **nacme_old, double complex *coef){
+    double **nacme, double **nacme_old, double **socme, double **socme_old, double complex *coef){
 
     double complex *k1 = malloc(nst * sizeof(double complex));
     double complex *k2 = malloc(nst * sizeof(double complex));
@@ -41,12 +42,14 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
     double *eenergy = malloc(nst * sizeof(double));
 //    double *na_term = malloc(nst * sizeof(double));
     double **dv = malloc(nst * sizeof(double*));
+    double **h = malloc(nst * sizeof(double*));
 
     int ist, jst, iestep;
     double frac, edt, norm;
 
     for(ist = 0; ist < nst; ist++){
         dv[ist] = malloc(nst * sizeof(double));
+        h[ist] = malloc(nst * sizeof(double));
     }
 
     frac = 1.0 / (double)nesteps;
@@ -56,20 +59,21 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
     for(ist = 0; ist < nst; ist++){
         printf("state: %i energy: %.5f old energy: %.5f\n", ist, energy[ist], energy_old[ist]);
     }
-*/
+*/    
     for(iestep = 0; iestep < nesteps; iestep++){
-
-        // Interpolate energy and NACME terms between time t and t + dt
+        // Interpolate energy, NACME, and SOCME terms between time t and t + dt
         for(ist = 0; ist < nst; ist++){
             eenergy[ist] = energy_old[ist] + (energy[ist] - energy_old[ist]) * (double)iestep * frac;
             for(jst = 0; jst < nst; jst++){
                 dv[ist][jst] = nacme_old[ist][jst] + (nacme[ist][jst] - nacme_old[ist][jst])
                     * (double)iestep * frac;
+                h[ist][jst] = socme_old[ist][jst] + (socme[ist][jst] - socme_old[ist][jst])
+                    * (double)iestep * frac;
             }
         }
 
         // Calculate k1
-        cdot(nst, eenergy, dv, coef, c_dot);
+        cdot(nst, eenergy, dv, h, coef, c_dot);
 
         for(ist = 0; ist < nst; ist++){
             k1[ist] = edt * c_dot[ist];
@@ -78,7 +82,7 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
         }
 
         // Calculate k2
-        cdot(nst, eenergy, dv, coef_new, c_dot);
+        cdot(nst, eenergy, dv, h, coef_new, c_dot);
 
         for(ist = 0; ist < nst; ist++){
             k2[ist] = edt * c_dot[ist];
@@ -87,7 +91,7 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
         }
 
         // Calculate k3
-        cdot(nst, eenergy, dv, coef_new, c_dot);
+        cdot(nst, eenergy, dv, h, coef_new, c_dot);
 
         for(ist = 0; ist < nst; ist++){
             k3[ist] = edt * c_dot[ist];
@@ -96,7 +100,7 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
         }
 
         // Calculate k4
-        cdot(nst, eenergy, dv, coef_new, c_dot);
+        cdot(nst, eenergy, dv, h, coef_new, c_dot);
 
         for(ist = 0; ist < nst; ist++){
             k4[ist] = edt * c_dot[ist];
@@ -130,6 +134,7 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
 
     for(ist = 0; ist < nst; ist++){
         free(dv[ist]);
+        free(h[ist]);
     }
 
     free(k1);
@@ -143,12 +148,12 @@ static void rk4_coef(int nst, int nesteps, double dt, double *energy, double *en
     free(eenergy);
 //    free(na_term);
     free(dv);
-
+    free(h);
 }
 
 // Routine for density propagation scheme in rk4 propagator
 static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *energy_old,
-    double **nacme, double **nacme_old, double complex **rho){
+    double **nacme, double **nacme_old, double **socme, double **socme_old, double complex **rho){
 
     double complex **k1 = malloc(nst * sizeof(double complex*));
     double complex **k2 = malloc(nst * sizeof(double complex*));
@@ -161,6 +166,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
     double *eenergy = malloc(nst * sizeof(double));
 //    double *na_term = malloc(nst * sizeof(double));
     double **dv = malloc(nst * sizeof(double*));
+    double **h = malloc(nst * sizeof(double*));
 
     int ist, jst, iestep;
     double frac, edt;
@@ -175,6 +181,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
         rho_dot[ist] = malloc(nst * sizeof(double complex));
         rho_new[ist] = malloc(nst * sizeof(double complex));
         dv[ist] = malloc(nst * sizeof(double));
+        h[ist] = malloc(nst * sizeof(double));
     }
 
     frac = 1.0 / (double)nesteps;
@@ -194,11 +201,13 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
             for(jst = 0; jst < nst; jst++){
                 dv[ist][jst] = nacme_old[ist][jst] + (nacme[ist][jst] - nacme_old[ist][jst])
                     * (double)iestep * frac;
+                h[ist][jst] = socme_old[ist][jst] + (socme[ist][jst] - socme_old[ist][jst])
+                    * (double)iestep * frac;
             }
         }
 
         // Calculate k1
-        rhodot(nst, eenergy, dv, rho, rho_dot);
+        rhodot(nst, eenergy, dv, h, rho, rho_dot);
 
         for(ist = 0; ist < nst; ist++){
             for(jst = 0; jst < nst; jst++){
@@ -209,7 +218,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
         }
 
         // Calculate k2
-        rhodot(nst, eenergy, dv, rho_new, rho_dot);
+        rhodot(nst, eenergy, dv, h, rho_new, rho_dot);
 
         for(ist = 0; ist < nst; ist++){
             for(jst = 0; jst < nst; jst++){
@@ -221,7 +230,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
         }
 
         // Calculate k3
-        rhodot(nst, eenergy, dv, rho_new, rho_dot);
+        rhodot(nst, eenergy, dv, h, rho_new, rho_dot);
 
         for(ist = 0; ist < nst; ist++){
             for(jst = 0; jst < nst; jst++){
@@ -233,7 +242,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
         }
 
         // Calculate k4
-        rhodot(nst, eenergy, dv, rho_new, rho_dot);
+        rhodot(nst, eenergy, dv, h, rho_new, rho_dot);
 
         for(ist = 0; ist < nst; ist++){
             for(jst = 0; jst < nst; jst++){
@@ -273,6 +282,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
         free(rho_dot[ist]);
         free(rho_new[ist]);
         free(dv[ist]);
+        free(h[ist]);
     }
 
     free(k1);
@@ -286,6 +296,7 @@ static void rk4_rho(int nst, int nesteps, double dt, double *energy, double *ene
     free(eenergy);
 //    free(na_term);
     free(dv);
+    free(h);
 
 }
 
