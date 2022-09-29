@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 #if defined(HAVE_LAPACK) || defined(HAVE_MKL)
 // DGEMM prototype
@@ -34,8 +35,8 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
     double **mo_overlap = malloc(norb * sizeof(double*));
     double **permut_mat = malloc(norb * sizeof(double*));
 
-    int ist, jst, ibasis, iorb, jorb, aorb, borb, exponent;
-    double fac;
+    int ist, jst, ibasis, iorb, jorb, aorb, borb, exponent, start, stop;
+    double fac, clock_time;
     int debug;
 
     // This is temporary option to print several variables
@@ -50,9 +51,14 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
         }
     }
 
+    start = clock();
     calc_MO_over(nbasis, norb, mo_overlap, permut_mat, ao_overlap, mo_coef_old, mo_coef_new);
+    stop = clock();
+    clock_time = ((double)(stop - start)) / CLOCKS_PER_SEC;
+    printf("MO overlap took %f\n", clock_time);
+    fflush(stdout);
 
-    if(debug == 2){
+    if(debug == 4){
         printf("permut_mat \n");
         for(iorb = 0; iorb < norb; iorb++){
             for(jorb = 0; jorb < norb; jorb++){
@@ -141,7 +147,7 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
 
     CI_phase_order(nst, norb, nocc, nvirt, orb_ini, orb_final, ci_coef_old, ci_coef_new, permut_mat);
 
-    if(debug == 1){
+    if(debug == 3){
         // Print ci_coef_new
         printf("ci_coef_new after phase correction \n");
         for(iorb = 0; iorb < nocc; iorb++){
@@ -206,7 +212,7 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
     // TODO : ist = jst should be removed
     // TODO : we need to evaluate only ist < jst cases since NACME is anti-symmetric
     for(ist = 0; ist < nst; ist++){
-        for(jst = 0; jst < nst; jst++){
+        for(jst = 0; jst < ist; jst++){
 
             if(ist == 0 || jst == 0){
 
@@ -272,6 +278,7 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
 
             // NACME is divided by time step (finite numerical differentiation)
             nacme[ist][jst] /= dt;
+            nacme[jst][ist] = -1.0 * nacme[ist][jst];
 
         }
     }
@@ -302,6 +309,7 @@ static void calc_MO_over(int nbasis, int norb, double **mo_overlap, double **per
     double **ao_overlap, double **mo_coef_old, double **mo_coef_new){
 
     double **tmp_sign = malloc(norb * sizeof(double*));
+    double **tmp_overlap = malloc(norb * sizeof(double*));
     int ibasis, jbasis, iorb, jorb;
 
 #if defined(HAVE_LAPACK) || defined(HAVE_MKL)
@@ -317,8 +325,12 @@ static void calc_MO_over(int nbasis, int norb, double **mo_overlap, double **per
     // Initialize temporary array to save sign of overlap in MO basis
     for(iorb = 0; iorb < norb; iorb++){
         tmp_sign[iorb] = malloc(norb * sizeof(double));
+        tmp_overlap[iorb] = malloc(nbasis * sizeof(double));
         for(jorb = 0; jorb < norb; jorb++){
             tmp_sign[iorb][jorb] = 0.0;
+        }
+        for(ibasis = 0; ibasis < nbasis; ibasis++){
+            tmp_overlap[iorb][ibasis] = 0.0;
         }
     }
 
@@ -372,6 +384,29 @@ static void calc_MO_over(int nbasis, int norb, double **mo_overlap, double **per
     }
 #else
     for(iorb = 0; iorb < norb; iorb++){
+        for(ibasis = 0; ibasis < nbasis; ibasis++){
+            for(jbasis = 0; jbasis < nbasis; jbasis++){
+                tmp_overlap[iorb][jbasis] += mo_coef_old[iorb][ibasis] * ao_overlap[ibasis][jbasis];
+            }
+        }
+    }
+
+    for(iorb = 0; iorb < norb; iorb++){
+        for(jorb = 0; jorb < norb; jorb++){
+            for(ibasis = 0; ibasis < nbasis; ibasis++){
+                mo_overlap[iorb][jorb] += tmp_overlap[iorb][ibasis] * mo_coef_new[jorb][ibasis];
+            }
+            if(mo_overlap[iorb][jorb] < 0.0){
+                tmp_sign[iorb][jorb] = -1.0;
+            } else {
+                tmp_sign[iorb][jorb] = 1.0;
+            }
+        }
+    }
+    
+    /*
+    // original code
+    for(iorb = 0; iorb < norb; iorb++){
         for(jorb = 0; jorb < norb; jorb++){
 
             for(ibasis = 0; ibasis < nbasis; ibasis++){
@@ -380,8 +415,7 @@ static void calc_MO_over(int nbasis, int norb, double **mo_overlap, double **per
                     // Save the sign of overlap elements for calculating permutation matrix
                     if(mo_overlap[iorb][jorb] < 0.0){
                         tmp_sign[iorb][jorb] = -1.0;
-                    }
-                    else{
+                    } else {
                         tmp_sign[iorb][jorb] = 1.0;
                     }
                 }
@@ -389,6 +423,7 @@ static void calc_MO_over(int nbasis, int norb, double **mo_overlap, double **per
 
         }
     }
+    */
 #endif
 
     for(iorb = 0; iorb < norb; iorb++){
@@ -401,9 +436,11 @@ static void calc_MO_over(int nbasis, int norb, double **mo_overlap, double **per
     // Deallocate temporary array to save sign of overlap in MO basis
     for(iorb = 0; iorb < norb; iorb++){
         free(tmp_sign[iorb]);
+        free(tmp_overlap[iorb]);
     }
 
     free(tmp_sign);
+    free(tmp_overlap);
 
 #if defined(HAVE_LAPACK) || defined(HAVE_MKL)
     free(mo_overlap_1d);
@@ -457,22 +494,39 @@ static void MO_phase_order(int nbasis, int norb, double **mo_coef_new, double **
 
 // Routine to match phase of CI coefficients and orderings between two time steps
 // TODO : Is this correct method to match phase (or order) for CI coefficients?
-static void CI_phase_order(int nst, int norb, int nocc, int nvirt, int *orb_ini, int *orb_final,
+static void CI_phase_order(int nst, int norb, int nocc, int nvirt,
+    int *orb_ini, int *orb_final,
     double ***ci_coef_old, double ***ci_coef_new, double **permut_mat){
 
     double **tmp_ci = malloc(norb * sizeof(double*));
+    double **tmp_ci_2 = malloc(norb * sizeof(double*));
     double **tmp_ci_new = malloc(norb * sizeof(double*));
-    int ist, iorb, jorb, aorb, borb;
+    int ist, iorb, jorb, aorb;
+    double one = 1.0;
+    double zero = 0.0;
+
+#if defined(HAVE_LAPACK) || defined(HAVE_MKL)
+    double *permut_1d = malloc(norb * norb * sizeof(double));
+    double *tmp_ci_1d = malloc(norb * norb * sizeof(double));
+    double *tmp_1d = malloc(norb * norb * sizeof(double));
+#endif
 
     // Initialize temporary CI arrays; C' and C
     for(iorb = 0; iorb < norb; iorb++){
         tmp_ci[iorb] = malloc(norb * sizeof(double));
+        tmp_ci_2[iorb] = malloc(norb * sizeof(double));
         tmp_ci_new[iorb] = malloc(norb * sizeof(double));
     }
 
     // CI coefficients for S_0 are zero
     for(ist = 1; ist < nst; ist++){
-
+#if defined(HAVE_LAPACK) || defined(HAVE_MKL)
+        for(iorb = 0; iorb < norb * norb; iorb++){
+            permut_1d[iorb] = 0.;
+            tmp_ci_1d[iorb] = 0.;
+            tmp_1d[iorb] = 0.;
+        }
+#endif
         for(iorb = orb_ini[0]; iorb < orb_final[0]; iorb++){
             for(aorb = orb_ini[0]; aorb < orb_final[0]; aorb++){
                 // Assign CI coefficients at time t to new symmetric array
@@ -487,11 +541,47 @@ static void CI_phase_order(int nst, int norb, int nocc, int nvirt, int *orb_ini,
                 }
                 // Initialize new empty array for phase correction
                 tmp_ci_new[iorb][aorb] = 0.0;
+                tmp_ci_2[iorb][aorb] = 0.0;
             }
         }
 
         // Decide the phase and ordering for CI coefficients using permutation matrix; C' = O * C * O
         // TODO : The phases for occupied and virtual orbitals are matched when permutation is diagonal matrix
+#if defined(HAVE_LAPACK) || defined(HAVE_MKL)
+        for(iorb = orb_ini[0]; iorb < orb_final[0]; iorb++){
+            for(jorb = orb_ini[0]; jorb < orb_final[0]; jorb++){
+                permut_1d[jorb * norb + iorb] = permut_mat[iorb][jorb];
+                tmp_ci_1d[jorb * norb + iorb] = tmp_ci[iorb][jorb];
+            }
+        }
+        // T = C * O 
+        dgemm_("N", "N", &norb, &norb, &norb, &one, tmp_ci_1d, &norb, permut_1d, &norb, &zero, tmp_1d, &norb);
+        // C' = O * T
+        dgemm_("N", "N", &norb, &norb, &norb, &one, permut_1d, &norb, tmp_1d, &norb, &zero, tmp_ci_1d, &norb);
+        for(iorb = orb_ini[0]; iorb < orb_final[0]; iorb++){
+            for(jorb = orb_ini[0]; jorb < orb_final[0]; jorb++){
+                tmp_ci_new[iorb][jorb] = tmp_ci_1d[jorb * norb + iorb];
+            }
+        }
+#else
+        for(iorb = orb_ini[0]; iorb < orb_final[0]; iorb++){
+            for(jorb = orb_ini[0]; jorb < orb_final[0]; jorb++){
+                for(aorb = orb_ini[0]; aorb < orb_final[0]; aorb++){
+                    tmp_ci_2[iorb][jorb] += tmp_ci[iorb][aorb] * permut_mat[aorb][jorb];
+                }
+            }
+        }
+
+        for(iorb = orb_ini[0]; iorb < orb_final[0]; iorb++){
+            for(jorb = orb_ini[0]; jorb < orb_final[0]; jorb++){
+                for(aorb = orb_ini[0]; aorb < orb_final[0]; aorb++){
+                    tmp_ci_new[iorb][jorb] += permut_mat[iorb][aorb] * tmp_ci_2[aorb][jorb];
+                }
+            }
+        }
+        
+        /*
+        // original code
         for(jorb = orb_ini[0]; jorb < orb_final[0]; jorb++){
             for(borb = orb_ini[0]; borb < orb_final[0]; borb++){
 
@@ -500,25 +590,31 @@ static void CI_phase_order(int nst, int norb, int nocc, int nvirt, int *orb_ini,
                         tmp_ci_new[jorb][borb] += permut_mat[jorb][iorb] * tmp_ci[iorb][aorb] * permut_mat[aorb][borb];
                     }
                 }
-
             }
         }
-
+        */
+#endif
         // Apply new phase correction for the CI coefficients; C = C'
         for(iorb = orb_ini[0]; iorb < nocc; iorb++){
             for(aorb = 0; aorb < orb_final[0] - nocc; aorb++){
                 ci_coef_new[ist][iorb][aorb] = tmp_ci_new[iorb][nocc + aorb];
             }
         }
-
     }
 
     // Deallocate temporary CI arrays; C' and C
     for(iorb = 0; iorb < norb; iorb++){
         free(tmp_ci[iorb]);
+        free(tmp_ci_2[iorb]);
         free(tmp_ci_new[iorb]);
     }
-
+        
+#if defined(HAVE_LAPACK) || defined(HAVE_MKL)
+    free(tmp_ci_1d);
+    free(permut_1d);
+    free(tmp_1d);
+#endif
+    free(tmp_ci_2);
     free(tmp_ci);
     free(tmp_ci_new);
 
