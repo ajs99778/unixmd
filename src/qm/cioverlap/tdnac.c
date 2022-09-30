@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
 
 #if defined(HAVE_LAPACK) || defined(HAVE_MKL)
 // DGEMM prototype
@@ -35,8 +34,8 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
     double **mo_overlap = malloc(norb * sizeof(double*));
     double **permut_mat = malloc(norb * sizeof(double*));
 
-    int ist, jst, ibasis, iorb, jorb, aorb, borb, exponent, start, stop;
-    double fac, clock_time;
+    int ist, jst, ibasis, iorb, jorb, aorb, borb, exponent;
+    double fac;
     int debug;
 
     // This is temporary option to print several variables
@@ -51,12 +50,7 @@ static void TD_NAC(int istep, int nst, int nbasis, int norb, int nocc, int nvirt
         }
     }
 
-    start = clock();
     calc_MO_over(nbasis, norb, mo_overlap, permut_mat, ao_overlap, mo_coef_old, mo_coef_new);
-    stop = clock();
-    clock_time = ((double)(stop - start)) / CLOCKS_PER_SEC;
-    printf("MO overlap took %f\n", clock_time);
-    fflush(stdout);
 
     if(debug == 4){
         printf("permut_mat \n");
