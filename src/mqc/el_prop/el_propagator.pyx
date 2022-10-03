@@ -9,18 +9,12 @@ def cdot(nst, e, dv, h, c):
     na_term = np.zeros(nst, dtype=np.cdouble)
     so_term = np.zeros(nst, dtype=np.cdouble)
 
-    print("cdot c", c, flush=True)
-
     for i in range(0, nst):
         for j in range(0, nst):
             if i == j:
                 continue
             na_term[i] -= dv[i, j] * c[j]
             so_term[i] += h[i, j] * c[j]
-
-    print("nrg", -1.0j * c * (e - e[0]))
-    print("nac", na_term)
-    print("soc", -1.0j * so_term)
 
     return -1.0j * c * (e - e[0]) + na_term - 1.0j * so_term
 
@@ -73,15 +67,11 @@ def rk4_coef(nst, nesteps, dt, elec_object, energy, energy_old, nacme, nacme_old
         kfunction = 0.5 * k1
         coef_new = coef + kfunction
 
-        print(iestep, "k1", coef_new, flush=True)
-
         c_dot = cdot(nst, eenergy, dv, h, coef_new)
 
         k2 = edt * c_dot
         kfunction = (np.sqrt(2.) - 1) * k1 / 2 + (1 - np.sqrt(2.) / 2) * k2
         coef_new = coef + kfunction
-
-        print(iestep, "k2", coef_new, flush=True)
 
         c_dot = cdot(nst, eenergy, dv, h, coef_new)
 
@@ -89,18 +79,13 @@ def rk4_coef(nst, nesteps, dt, elec_object, energy, energy_old, nacme, nacme_old
         kfunction = -np.sqrt(2.) * k2 / 2 + (1 + np.sqrt(2.) / 2) * k3
         coef_new = coef + kfunction
 
-        print(iestep, "k3", coef_new, flush=True)
-
         c_dot = cdot(nst, eenergy, dv, h, coef_new)
 
         k4 = edt * c_dot
         variation = (k1 + (2 - np.sqrt(2.)) * k2 + (2 + np.sqrt(2.)) * k3 + k4) / 6
         coef_new = coef + variation
 
-        print(iestep, "k4", coef_new, flush=True)
-
         norm = np.real(np.vdot(coef_new, coef_new))
-        print("norm", norm, flush=True)
         
         coef = coef_new / np.sqrt(norm)
     
@@ -186,6 +171,10 @@ def el_run(
             socme_old,
             program_state.state_coefficients,
         )
+        
+        for i in range(0, nst):
+            for j in range(0, nst):
+                program_state.rho[i, j] = np.conj(program_state.state_coefficients[i]) * program_state.state_coefficients[j]
 
     elif elec_object == "density":
         program_state.rho = rk4_rho(
