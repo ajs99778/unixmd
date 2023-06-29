@@ -158,23 +158,26 @@ def el_run(
 
     # Propagate electrons
     if elec_object == "coefficient":
-        program_state.state_coefficients = rk4_coef(
-            nst,
-            program_state.electronic_propogation_steps,
-            dt,
-            elec_object,
-            program_state.state_energies[-1].as_hartree(),
-            program_state.state_energies[-2].as_hartree(),
-            program_state.nacmes[-1],
-            program_state.nacmes[-2],
-            socme,
-            socme_old,
-            program_state.state_coefficients,
-        )
+        program_state.state_coefficients.append(
+            rk4_coef(
+                nst,
+                program_state.electronic_propogation_steps,
+                dt,
+                elec_object,
+                program_state.state_energies[-1].as_hartree(),
+                program_state.state_energies[-2].as_hartree(),
+                program_state.nacmes[-1],
+                program_state.nacmes[-2],
+                socme,
+                socme_old,
+                program_state.state_coefficients[-1],
+            )
         
         for i in range(0, nst):
             for j in range(0, nst):
-                program_state.rho[i, j] = np.conj(program_state.state_coefficients[i]) * program_state.state_coefficients[j]
+                program_state.rho[i, j] = np.conj(
+                    program_state.state_coefficients[-1][i]
+                ) * program_state.state_coefficients[-1][j]
 
     elif elec_object == "density":
         program_state.rho = rk4_rho(
